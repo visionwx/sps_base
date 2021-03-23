@@ -1,0 +1,19 @@
+class COLLECTIONS:
+	users = "users"
+	vendor = "vendor"
+	user_tokens = "user_tokens"
+	deviceInfo = "deviceInfo"
+	emailCodes = "emailCodes"
+	supportDevices = "supportDevices"
+	deviceDataModel = "deviceDataModel"
+	supportDeviceStateEvents = "supportDeviceStateEvents"
+	supportDeviceStateCommands = "supportDeviceStateCommands"
+	supportSceneConditionTypes = "supportSceneConditionTypes"
+	houses = "houses"
+	devices = "devices"                         #  users->houses->
+	scenes = "scenes"                           #  users->houses->
+	rooms = "rooms"                             #  users->houses->
+	messages = "messages"                       #  users->houses->
+	deviceHistoryAlarms = "deviceHistoryAlarms" #  users->houses->
+	deviceHistoryDatas = "deviceHistoryDatas"   #  users->houses->
+	deviceOperations = "deviceOperations"       #  users->houses->

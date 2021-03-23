@@ -1,0 +1,9 @@
+## SPS_BASE
+
+SPS CORE Base lib
+- DEVICE_CATEGORY, TYPE, VENDOR
+- COLLECTIONS
+- DB, PUBSUB Agent
+
+## Change
+#### 2021-03-23 First commit
