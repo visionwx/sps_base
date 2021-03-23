@@ -46,3 +46,12 @@ class ROOM_TOPIC:
 # google智能家居平台 相关主题
 class GOOGLE_SMART_HOME_TOPIC:
     REQUEST_SYNC = "smart-home-request-sync"
+
+# 收到来自厂商云 订阅消息
+class VENDOR_MESSAGE_RECEIVE_TOPIC:
+    WULIAN_DATA  = "wulian-data-topic-receive"
+    WULIAN_STATE = "wulian-state-topic-receive"
+    WULIAN_ALARM = "wulian-alarm-topic-receive"
+    WULIAN = "wulian-message-receive"
+    TUYA   = "tuya-message-receive"
+    EZVIZ  = "ezivz-message-receive"
