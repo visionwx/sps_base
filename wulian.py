@@ -1,5 +1,11 @@
 from devices import DEVICE_ALARM
 
+# 物联mqtt订阅消息主题类型
+class WULIAN_MQTT_SUBSCRIBE_TOPIC:
+    DATA  = "wl/partner/{partner_id}/data"
+    STATE = "wl/partner/{partner_id}/state"
+    ALARM = "wl/partner/{partner_id}/alarm"
+
 # 物联设备 消息代码
 class WULIAN_DEVICE_MESSAGE_CODE:
 	device_online  = "0101012"
