@@ -13,6 +13,6 @@ def getParaFromDict(fieldName, dataInDict,
 def getParaFromEnvironment(fieldName, 
 	defaultValue=None, raiseExceptionIfNone=True):
     fieldValue = os.environ.get(fieldName, defaultValue)
-    if fieldValue is None:
+    if fieldValue is None and raiseExceptionIfNone:
         raise EnvironmentValueNotFoundException(fieldName)
     return fieldValue
