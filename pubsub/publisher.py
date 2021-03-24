@@ -8,7 +8,7 @@ from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC
 TAG = "PUBLISHER"
 LOGGER = getLogger(
     logToConsole=True, 
-    logFilePath="/var/log", logName="sps_base")
+    logFilePath="/var/log/sps_base.log", logName="sps_base")
 
 # environment value
 projectId = os.environ.get('GCP_PROJECT', None)
