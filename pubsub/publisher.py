@@ -2,18 +2,23 @@ import os
 import json
 from google.cloud import pubsub_v1
 from sps_base.exceptions import EnvironmentValueNotFoundException
+from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.utils.logger import getLogger
 from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC
 
 TAG = "PUBLISHER"
-LOGGER = getLogger(
-    logToConsole=True, 
-    logFilePath="/var/log/sps_base.log", logName="sps_base")
 
-# environment value
-projectId = os.environ.get('GCP_PROJECT', None)
-if projectId is None:
-    raise EnvironmentValueNotFoundException('GCP_PROJECT')
+# 获取日志实例
+LOGGER = getLogger(
+    logFilePath=getParaFromEnvironment(
+        'log_file_path',
+        defaultValue="/var/log/sps_base.log",
+        raiseExceptionIfNone=False
+    )
+)
+
+# 获取项目id
+projectId = getParaFromEnvironment('GCP_PROJECT')
 
 # init pubsub client
 publisher = pubsub_v1.PublisherClient()
