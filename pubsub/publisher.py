@@ -82,3 +82,10 @@ def publishWulianAlarmMessageReceiveTopic(topicData):
         VENDOR_MESSAGE_RECEIVE_TOPIC.WULIAN_ALARM,
         topicData
     )
+
+# 发布收到物联 data/state/alarm  类型消息
+def publishWulianMessageReceiveTopic(topicData):
+    publishTopic(
+        VENDOR_MESSAGE_RECEIVE_TOPIC.WULIAN,
+        topicData
+    )
