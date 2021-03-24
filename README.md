@@ -14,5 +14,6 @@ SPS CORE Base lib
 - 【修复】本地包引入，增加sps_base.前缀
 - 【修复】parameters.py 环境变量获取函数raiseException参数不起作用
 - 【新增】pubsub/publisher.py增加物联统一消息接收事件发布函数
+- 【优化】wulian.py WULIAN_MQTT_SUBSCRIBE_TOPIC优化
 
 #### 2021-03-23 First commit
