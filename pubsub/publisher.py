@@ -2,10 +2,13 @@ import os
 import json
 from google.cloud import pubsub_v1
 from exceptions import EnvironmentValueNotFoundException
-from utils import logger
+from utils.logger import getLogger
 from topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC
 
 TAG = "PUBLISHER"
+LOGGER = getLogger(
+    logToConsole=True, 
+    logFilePath="/var/log", logName="sps_base")
 
 # environment value
 projectId = os.environ.get('GCP_PROJECT', None)
@@ -21,7 +24,7 @@ def publishTopic(topicId, topicData):
         topicData = json.dumps(topicData).encode("utf-8")
     topicPath = publisher.topic_path(projectId, topicId)
     future = publisher.publish(topicPath, topicData)
-    logger.info(TAG, "topicId=" + topicId 
+    LOGGER.info(TAG, "topicId=" + topicId 
         + ", " + str(future.result()))
 
 # 发布设备新建/更新/删除 事件
