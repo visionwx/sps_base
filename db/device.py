@@ -29,12 +29,18 @@ class DEVICE:
             raise HouseNotExistException(self.userId, self.houseId)
         # 检查设备
         deviceRef = houseRef.collection(COLLECTIONS.devices
-            ).document(self.deviceId).get()
-        if not deviceRef.exists:
-            raise DeviceNotExistException(self.userId, self.houseId,
-                self.deviceId)
+            ).document(self.deviceId)
         return deviceRef
     
+    # 检查设备引用是否存在
+    def isDeviceExist(self):
+        if not self.deviceRef.get().exists:
+            raise DeviceNotExistException(
+                self.userId, 
+                self.houseId,
+                self.deviceId
+            )
+
     # 数据创建接口 封装
     def create(self, data):
         # 数据检查
@@ -48,6 +54,7 @@ class DEVICE:
     # 数据更新接口 封装
     def update(self, data):
         # 数据检查
+        self.isDeviceExist()
         # 执行操作
         result = self.deviceRef.update(data)
         publishDeviceUpdateTopic(
@@ -57,6 +64,7 @@ class DEVICE:
     
     # 数据删除接口 封装
     def delete(self):
+        self.isDeviceExist()
         result = self.deviceRef.delete()
         publishDeviceDeleteTopic(
             self.userId, self.houseId, self.deviceId,

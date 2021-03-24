@@ -35,3 +35,9 @@ class EnvironmentValueNotFoundException(Exception):
         self.envField = envField
     def __str__(self):
         print("environment value:" + self.envField  + " not found")
+
+class WulianMessageParameterMissingException(Exception):
+    def __init__(self, messageField):
+        self.messageField = messageField
+    def __str__(self):
+        print("Wulian message parameter:" + self.messageField  + " missing")

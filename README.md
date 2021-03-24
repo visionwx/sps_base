@@ -16,5 +16,7 @@ SPS CORE Base lib
 - 【新增】pubsub/publisher.py增加物联统一消息接收事件发布函数
 - 【优化】wulian.py WULIAN_MQTT_SUBSCRIBE_TOPIC优化
 - 【优化】优化日志输出处理，可用环境变量配置日志输出位置
+- 【新增】增加WulianMessageParameterMissingException
+- 【优化】调整db/device.py对设备是否存在逻辑判断的位置
 
 #### 2021-03-23 First commit
