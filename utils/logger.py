@@ -83,5 +83,5 @@ def getLogger(logToConsole=True, logFilePath=None,
     if LOGGER is not None:
         return LOGGER
     LOGGER = MyLogger(logToConsole, logFilePath, logName)
-    LOGGER.info('{0} logger installed'.format(logName))
+    LOGGER.info("LOGGER", '{0} logger installed'.format(logName))
     return LOGGER
