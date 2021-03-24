@@ -11,5 +11,5 @@ SPS CORE Base lib
 - 【新增】utils/parameters.py
 - 【新增】wulian.py 新增 WULIAN_MQTT_SUBSCRIBE_TOPIC
 - 【新增】utils/logger.py 新增日志类
-
+- 【修复】本地包引入，增加sps_base.前缀
 #### 2021-03-23 First commit

@@ -1,4 +1,4 @@
-from devices import DEVICE_ALARM
+from sps_base.devices import DEVICE_ALARM
 
 # 物联mqtt订阅消息主题类型
 class WULIAN_MQTT_SUBSCRIBE_TOPIC:

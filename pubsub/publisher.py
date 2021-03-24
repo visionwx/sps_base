@@ -1,9 +1,9 @@
 import os
 import json
 from google.cloud import pubsub_v1
-from exceptions import EnvironmentValueNotFoundException
-from utils.logger import getLogger
-from topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC
+from sps_base.exceptions import EnvironmentValueNotFoundException
+from sps_base.utils.logger import getLogger
+from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC
 
 TAG = "PUBLISHER"
 LOGGER = getLogger(

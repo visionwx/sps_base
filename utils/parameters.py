@@ -1,5 +1,5 @@
 import os
-from exceptions import ParametersNotProvideException, EnvironmentValueNotFoundException
+from sps_base.exceptions import ParametersNotProvideException, EnvironmentValueNotFoundException
 
 # 从一个字典 提取 参数
 def getParaFromDict(fieldName, dataInDict, 
