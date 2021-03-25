@@ -13,34 +13,68 @@ class DEVICE_CATEGORY:
 
 # 所有设备类型
 class DEVICE_TYPE:
-    # 红外探测器
-    pir_detector        = "devices.types.PIR_DETECTOR"
-    # 烟雾探测器
-    smoke_detector      = "devices.types.SMOKE_DETECTOR"
-    # 门窗磁感应器
-    contact_detector    = "devices.types.CONTACT_DETECTOR"
-    # 水浸探测器
-    water_leak_detector = "devices.types.WATER_LEAK_DETECTOR"
-    # 天然气探测器
-    gas_detector        = "devices.types.GAS_DETECTOR"
-    # 光强检测器
-    light_sensor        = "devices.types.LIGHT_SENSOR"
-    # 温湿度检测器
-    temp_humi_sensor    = "devices.types.TEMP_HUMI_SENSOR"
-    # 一路墙壁开关
-    wall_switch_1       = "devices.types.WALL_SWITCH_1"
-    # 两路墙壁开关
-    wall_switch_2       = "devices.types.WALL_SWITCH_2"
-    # 三路墙壁开关
-    wall_switch_3       = "devices.types.WALL_SWITCH_3"
-    # 一路零火开关
-    embedded_switch_1   = "devices.types.EMBEDDED_SWITCH_1"
-    # 两路零火开关
-    embedded_switch_2   = "devices.types.EMBEDDED_SWITCH_2"
-    # 六路场景开关
-    scene_switch_6      = "devices.types.SCENE_SWITCH_6"
-    # 车库门控制器
-    garage_door_opener  = "devices.types.GARAGE_DOOR_OPENER"
+	# 红外探测器
+	pir_detector        = "devices.types.PIR_DETECTOR"
+	# 烟雾探测器
+	smoke_detector      = "devices.types.SMOKE_DETECTOR"
+	# 门窗磁感应器
+	contact_detector    = "devices.types.CONTACT_DETECTOR"
+	# 水浸探测器
+	water_leak_detector = "devices.types.WATER_LEAK_DETECTOR"
+	# 天然气探测器
+	gas_detector        = "devices.types.GAS_DETECTOR"
+	# 光强检测器
+	light_sensor        = "devices.types.LIGHT_SENSOR"
+	# 温湿度检测器
+	temp_humi_sensor    = "devices.types.TEMP_HUMI_SENSOR"
+	# 一路墙壁开关
+	wall_switch_1       = "devices.types.WALL_SWITCH_1"
+	# 两路墙壁开关
+	wall_switch_2       = "devices.types.WALL_SWITCH_2"
+	# 三路墙壁开关
+	wall_switch_3       = "devices.types.WALL_SWITCH_3"
+	# 一路零火开关
+	embedded_switch_1   = "devices.types.EMBEDDED_SWITCH_1"
+	# 两路零火开关
+	embedded_switch_2   = "devices.types.EMBEDDED_SWITCH_2"
+	# 六路场景开关
+	scene_switch_6      = "devices.types.SCENE_SWITCH_6"
+	# 车库门控制器
+	garage_door_opener  = "devices.types.GARAGE_DOOR_OPENER"
+	# 报警器
+	sound_warner = "devices.types.SOUND_WARNER"
+	# 摄像头，对应萤石
+	camera_c3w = "devices.types.CAMERA_C3W"
+	camera_c3a = "devices.types.CAMERA_C3A"
+	# 网关，对应物联
+	gateway_01 = "devices.types.GATEWAY_01"
+	gateway_02 = "devices.types.GATEWAY_02"
+	# 窗帘控制器
+	curtain_opener = "devices.types.CURTAIN_OPENER"
+
+	# mapping to iconTypeId
+	toTypeId = {
+		gateway_01: "01",
+		gateway_02: "02",
+		pir_detector: "03",
+		smoke_detector: "04",
+		contact_detector: "05",
+		water_leak_detector: "06",
+		gas_detector: "07",
+		wall_switch_1: "08",
+		wall_switch_2: "08",
+		wall_switch_3: "08",
+		scene_switch_6: "09",
+		embedded_switch_1: "10",
+		embedded_switch_2: "10",
+		garage_door_opener: "11",
+		camera_c3w: "12",
+		camera_c3a: "13",
+		temp_humi_sensor: "14",
+		light_sensor: "15",
+		sound_warner: "16",
+		curtain_opener: "17"
+	}
 
 # 设备厂商 代码
 class DEVICE_VENDOR:
