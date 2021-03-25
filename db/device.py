@@ -200,3 +200,9 @@ class DeviceInfo:
     # 数据删除接口
     def delete(self):
         result = self.documentRef.delete()
+    
+    # 获取数据
+    def get(self):
+        if not self.documentRef.get().exists:
+            return None
+        return self.documentRef.get().to_dict()

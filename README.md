@@ -12,6 +12,7 @@ SPS CORE Base lib
 - 【新增】增加device_states和device_templates
 - 【优化】优化device_templates
 - 【新增】增加deviceInfo,deviceHistoryAlarms,deviceHistoryDatas db类
+- 【新增】deviceInfo增加get接口
 
 #### 2021-03-24 Update
 - 【新增】增加exception 参数找不到 和 环境变量参数找不到
