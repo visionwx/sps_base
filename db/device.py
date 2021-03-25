@@ -1,4 +1,4 @@
-from collections import COLLECTIONS
+from sps_base.collections import COLLECTIONS
 from sps_base.exceptions import UserNotExistException, HouseNotExistException, DeviceNotExistException
 from google.cloud import firestore
 from sps_base.pubsub.publisher import publishDeviceCreateTopic, publishDeviceUpdateTopic, publishDeviceDeleteTopic
