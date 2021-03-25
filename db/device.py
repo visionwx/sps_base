@@ -37,7 +37,7 @@ def parseUpdateData(updateData):
         mergeDict(result, vRef)
     return result
 
-class DEVICE:
+class Device:
     # init firestore object
     DB = firestore.Client()
 
@@ -51,19 +51,24 @@ class DEVICE:
 
     # 获取设备数据库引用
     def getDeviceRef(self):
-        # 检查用户
-        userRef = DB.collection(COLLECTIONS.users
-            ).document(self.userId).get()
-        if not userRef.exists:
-            raise UserNotExistException(self.userId)
-        # 检查房子
-        houseRef = userRef.collection(COLLECTIONS.houses
-            ).document(self.houseId).get()
-        if not houseRef.exists:
-            raise HouseNotExistException(self.userId, self.houseId)
+        # # 检查用户
+        # userRef = DB.collection(COLLECTIONS.users
+        #     ).document(self.userId).get()
+        # if not userRef.exists:
+        #     raise UserNotExistException(self.userId)
+        # # 检查房子
+        # houseRef = userRef.collection(COLLECTIONS.houses
+        #     ).document(self.houseId).get()
+        # if not houseRef.exists:
+        #     raise HouseNotExistException(self.userId, self.houseId)
         # 检查设备
-        deviceRef = houseRef.collection(COLLECTIONS.devices
+        deviceRef = DB.collection(COLLECTIONS.users
+            ).document(self.userId
+            ).collection(COLLECTIONS.houses
+            ).document(self.houseId
+            ).collection(COLLECTIONS.devices
             ).document(self.deviceId)
+
         return deviceRef
     
     # 检查设备引用是否存在
@@ -123,3 +128,75 @@ class DEVICE:
             None
         )
         return result
+
+class DeviceHistoryAlarms:
+    # init firestore object
+    DB = firestore.Client()
+
+    def __init__(self, userId, houseId):
+        self.userId = userId
+        self.houseId = houseId
+        self.collectionRef = self.getCollectionRef()
+
+    # 获取数据表集合引用
+    def getCollectionRef(self):
+        colRef = DB.collection(COLLECTIONS.users
+            ).document(self.userId
+            ).collection(COLLECTIONS.houses
+            ).document(self.houseId
+            ).collection(COLLECTIONS.deviceHistoryAlarms
+            )
+        return colRef
+
+    # 数据创建接口 封装
+    def add(self, data):
+        result = self.collectionRef.add(data)
+        return result
+
+class DeviceHistoryDatas:
+    # init firestore object
+    DB = firestore.Client()
+
+    def __init__(self, userId, houseId):
+        self.userId = userId
+        self.houseId = houseId
+        self.collectionRef = self.getCollectionRef()
+
+    # 获取数据表集合引用
+    def getCollectionRef(self):
+        colRef = DB.collection(COLLECTIONS.users
+            ).document(self.userId
+            ).collection(COLLECTIONS.houses
+            ).document(self.houseId
+            ).collection(COLLECTIONS.deviceHistoryDatas
+            )
+        return colRef
+
+    # 数据创建接口 封装
+    def add(self, data):
+        result = self.collectionRef.add(data)
+        return result
+
+class DeviceInfo:
+    # init firestore object
+    DB = firestore.Client()
+
+    def __init__(self, deviceId):
+        self.deviceId    = deviceId
+        self.documentRef = self.getDocumentRef()
+
+    # 获取数据表文档引用
+    def getDocumentRef(self):
+        docRef = DB.collection(COLLECTIONS.deviceInfo
+            ).document(self.deviceId)
+        return docRef
+
+    # 数据创建接口 封装
+    def create(self, data):
+        # 使用set，覆盖现有
+        result = self.documentRef.set(data)
+        return result
+    
+    # 数据删除接口
+    def delete(self):
+        result = self.documentRef.delete()
