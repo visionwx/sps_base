@@ -87,6 +87,18 @@ def generatePIRTemplate_WULIAN():
             "humanPassDetectState": HUMAN_PASS_STATE.NO_HUMAN_PASS_DETECTED
         }
     }
+    devData["attributes"] = {
+        "sensorStatesSupported": [{
+            "name": "humanPassDetectState",
+            "descriptiveCapabilities": {
+                "availableStates": [ 
+                    HUMAN_PASS_STATE.HUMAN_PASS_DETECTED, 
+                    HUMAN_PASS_STATE.NO_HUMAN_PASS_DETECTED
+                ]
+            },
+            "updateTime": None, #<timestamp_when_this_state_is_update>
+        }]
+    }
     return devData
 
 class DeviceTemplates:
