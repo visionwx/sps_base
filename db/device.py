@@ -68,12 +68,7 @@ class DEVICE:
     
     # 检查设备引用是否存在
     def isDeviceExist(self):
-        if not self.deviceRef.get().exists:
-            raise DeviceNotExistException(
-                self.userId, 
-                self.houseId,
-                self.deviceId
-            )
+        return self.deviceRef.get().exists
 
     # 数据创建接口 封装
     def create(self, data):
@@ -92,7 +87,12 @@ class DEVICE:
     # 数据更新接口 封装
     def update(self, data):
         # 数据检查
-        self.isDeviceExist()
+        if not self.isDeviceExist():
+            raise DeviceNotExistException(
+                self.userId, 
+                self.houseId,
+                self.deviceId
+            )
         # 执行操作
         result = self.deviceRef.update(data)
         # 发布事件
@@ -107,7 +107,12 @@ class DEVICE:
     # 数据删除接口 封装
     def delete(self):
         # 数据检查
-        self.isDeviceExist()
+        if not self.isDeviceExist():
+            raise DeviceNotExistException(
+                self.userId, 
+                self.houseId,
+                self.deviceId
+            )
         # 执行操作
         result = self.deviceRef.delete()
         # 发布事件

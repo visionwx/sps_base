@@ -8,6 +8,7 @@ SPS CORE Base lib
 ## Change
 #### 2021-03-25 Update
 - 【优化】db/device.py 发布事件时的data, 处理成完全字典
+- 【优化】调整db/device.py isDeviceExists函数
 
 #### 2021-03-24 Update
 - 【新增】增加exception 参数找不到 和 环境变量参数找不到
