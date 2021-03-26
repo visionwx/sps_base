@@ -6,6 +6,9 @@ SPS CORE Base lib
 - DB, PUBSUB Agent
 
 ## Change
+#### 2021-03-26 Update
+- 【修复】db/device.py DB bug修复
+
 #### 2021-03-25 Update
 - 【优化】db/device.py 发布事件时的data, 处理成完全字典
 - 【优化】调整db/device.py isDeviceExists函数

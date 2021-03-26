@@ -62,7 +62,7 @@ class Device:
         # if not houseRef.exists:
         #     raise HouseNotExistException(self.userId, self.houseId)
         # 检查设备
-        deviceRef = DB.collection(COLLECTIONS.users
+        deviceRef = self.DB.collection(COLLECTIONS.users
             ).document(self.userId
             ).collection(COLLECTIONS.houses
             ).document(self.houseId
@@ -140,7 +140,7 @@ class DeviceHistoryAlarms:
 
     # 获取数据表集合引用
     def getCollectionRef(self):
-        colRef = DB.collection(COLLECTIONS.users
+        colRef = self.DB.collection(COLLECTIONS.users
             ).document(self.userId
             ).collection(COLLECTIONS.houses
             ).document(self.houseId
@@ -164,7 +164,7 @@ class DeviceHistoryDatas:
 
     # 获取数据表集合引用
     def getCollectionRef(self):
-        colRef = DB.collection(COLLECTIONS.users
+        colRef = self.DB.collection(COLLECTIONS.users
             ).document(self.userId
             ).collection(COLLECTIONS.houses
             ).document(self.houseId
@@ -187,7 +187,7 @@ class DeviceInfo:
 
     # 获取数据表文档引用
     def getDocumentRef(self):
-        docRef = DB.collection(COLLECTIONS.deviceInfo
+        docRef = self.DB.collection(COLLECTIONS.deviceInfo
             ).document(self.deviceId)
         return docRef
 
