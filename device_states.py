@@ -13,3 +13,7 @@ class WATER_LEAK_STATE:
 class CONTACT_STATE:
 	CONTACTOR_OPEN_DETECTED  = "contactor_open_detected"
 	CONTACTOR_CLOSE_DETECTED = "contactor_close_detected"
+
+class GAS_STATE:
+	GAS_DETECTED  = "gas_detected"
+	NO_GAS_DETECTED = "no_gas_detected"
