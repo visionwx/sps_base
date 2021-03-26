@@ -10,6 +10,11 @@ TAG = "PUBLISHER"
 
 # 获取日志实例
 LOGGER = getLogger(
+    logToConsole=getParaFromEnvironment(
+        'log_to_console',
+        defaultValue=False,
+        raiseExceptionIfNone=False
+    ),
     logFilePath=getParaFromEnvironment(
         'log_file_path',
         raiseExceptionIfNone=False
