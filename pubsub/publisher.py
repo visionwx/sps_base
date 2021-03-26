@@ -55,7 +55,7 @@ def publishDeviceCreateTopic(userId, houseId,
 def publishDeviceUpdateTopic(userId, houseId, 
     deviceId, deviceData):
     publishDeviceTopic(
-        DEVICE_TOPIC.UPDATE, 
+        DEVICE_TOPIC.STATE_UPDATE, 
         userId, houseId, deviceId, 
         deviceData)
 
