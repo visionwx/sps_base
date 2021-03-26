@@ -173,12 +173,12 @@ def generateSmokerTemplate_WULIAN():
         "online": False,
         "isArmed": True,
         "currentSensorStateData": {
-            "contactDetectState": SMOKE_STATE.NO_SMOKE_DETECTED
+            "smokeDetectState": SMOKE_STATE.NO_SMOKE_DETECTED
         }
     }
     devData["attributes"] = {
         "sensorStatesSupported": [{
-            "name": "contactDetectState",
+            "name": "smokeDetectState",
             "descriptiveCapabilities": {
                 "availableStates": [ 
                     SMOKE_STATE.SMOKE_DETECTED, 
@@ -217,12 +217,12 @@ def generateWaterLeakerTemplate_WULIAN():
         "online": False,
         "isArmed": True,
         "currentSensorStateData": {
-            "contactDetectState": WATER_LEAK_STATE.NO_WATER_LEAK_DETECTED
+            "waterLeakDetectState": WATER_LEAK_STATE.NO_WATER_LEAK_DETECTED
         }
     }
     devData["attributes"] = {
         "sensorStatesSupported": [{
-            "name": "contactDetectState",
+            "name": "waterLeakDetectState",
             "descriptiveCapabilities": {
                 "availableStates": [ 
                     WATER_LEAK_STATE.WATER_LEAK_DETECTED, 
@@ -261,12 +261,12 @@ def generateGASTemplate_WULIAN():
         "online": False,
         "isArmed": True,
         "currentSensorStateData": {
-            "contactDetectState": GAS_STATE.NO_GAS_DETECTED
+            "gasDetectState": GAS_STATE.NO_GAS_DETECTED
         }
     }
     devData["attributes"] = {
         "sensorStatesSupported": [{
-            "name": "contactDetectState",
+            "name": "gasDetectState",
             "descriptiveCapabilities": {
                 "availableStates": [ 
                     GAS_STATE.GAS_DETECTED, 
