@@ -279,7 +279,107 @@ def generateGASTemplate_WULIAN():
     return devData
 
 # TEMP HUMI 
+def generateTempHumiTemplate_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.environment_sensor
+    devData["type"]  = DEVICE_TYPE.temp_humi_sensor
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.temp_humi_sensor)
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": ["Temperature Humidity Sensor"],
+        "name": "Temperature Humidity Sensor",
+        "nicknames": ["Temperature Humidity Sensor"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZSSMBPW-FD-01",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.SensorState"
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentSensorStateData": {
+            "humidityAmbientPercent": None,
+            "temperatureAmbientCelsius": None
+        }
+    }
+    devData["attributes"] = {
+        "sensorStatesSupported": [
+            {
+                "name": "humidityAmbientPercent",
+                "numericCapabilities": {
+                    "rawValueUnit": "%",
+                    "rawValueRange": {
+                        "min": 0,
+                        "max": 100
+                    }
+                },
+                "updateTime": None, #<timestamp_when_this_state_is_update>
+            },
+            {
+                "name": "temperatureAmbientCelsius",
+                "numericCapabilities": {
+                    "rawValueUnit": "C",
+                    "rawValueRange": {
+                        "min": -100,
+                        "max": 100
+                    }
+                },
+                "updateTime": None, #<timestamp_when_this_state_is_update>
+            }
+        ]
+    }
+    return devData
+
 # Light
+def generateLightTemplate_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.environment_sensor
+    devData["type"]  = DEVICE_TYPE.light_sensor
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.light_sensor)
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": ["Light Sensor"],
+        "name": "Light Sensor",
+        "nicknames": ["Light Sensor"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZSSMBPW-FD-01",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.SensorState"
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentSensorStateData": {
+            "humidityAmbientPercent": None,
+            "temperatureAmbientCelsius": None
+        }
+    }
+    devData["attributes"] = {
+        "sensorStatesSupported": [
+            {
+                "name": "brightness",
+                "numericCapabilities": {
+                    "rawValueUnit": "Lx",
+                    "rawValueRange": {
+                        "min": 0,
+                        "max": 1000
+                    }
+                },
+                "updateTime": None, #<timestamp_when_this_state_is_update>
+            }
+        ]
+    }
+    return devData
 
 # WALL_SW_1,2,3
 
@@ -297,8 +397,8 @@ class DeviceTemplates:
     SMOKER_WULIAN        = generateSmokerTemplate_WULIAN()
     WATER_LEAKER_WULIAN  = generateWaterLeakerTemplate_WULIAN()
     GAS_WULIAN           = generateGASTemplate_WULIAN()
-    TEMP_HUMI_WULIAN     = None
-    LIGHT_WULIAN         = None
+    TEMP_HUMI_WULIAN     = generateTempHumiTemplate_WULIAN()
+    LIGHT_WULIAN         = generateLightTemplate_WULIAN()
     WALL_SWITCH_1_WULIAN = None
     WALL_SWITCH_2_WULIAN = None
     WALL_SWITCH_3_WULIAN = None
