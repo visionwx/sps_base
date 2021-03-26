@@ -9,6 +9,7 @@ SPS CORE Base lib
 #### 2021-03-26 Update
 - 【修复】db/device.py DB bug修复
 - 【修复】pubsub/publisher.py 更新设备状态接口bug修复
+- 【修复】pubsub/publisher.py 获取日志对象接口
 
 #### 2021-03-25 Update
 - 【优化】db/device.py 发布事件时的data, 处理成完全字典

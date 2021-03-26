@@ -12,7 +12,6 @@ TAG = "PUBLISHER"
 LOGGER = getLogger(
     logFilePath=getParaFromEnvironment(
         'log_file_path',
-        defaultValue="/var/log/sps_base.log",
         raiseExceptionIfNone=False
     )
 )
