@@ -409,8 +409,8 @@ def generateWallSwitchTemplate_WULIAN(numOfToggles):
 
     devData = copy.deepcopy(BASE_TEMPLATE)
     devData["category"] = DEVICE_CATEGORY.smart_switch
-    devData["type"]  = _type(numOfToggles)
-    devData["icons"] = generateIconsUrlConfig(_type(numOfToggles))
+    devData["type"]  = _type[numOfToggles]
+    devData["icons"] = generateIconsUrlConfig(_type[numOfToggles])
     devData["googleType"] = "action.devices.types.SENSOR"
     devData["name"] = {
         "defaultName": [_name[numOfToggles - 1] + "-Gang Wall Switch"],
@@ -611,5 +611,42 @@ class DeviceTemplates:
     EMBEDDED_SWITCH_2_WULIAN = generateEmbeddedSwitchTemplate_WULIAN(2)
     SCENE_SWITCH_6_WULIAN    = generateSceneSwitchTemplate_WULIAN()
     GARAGE_DOOR_OPENER_TUYA  = None
+    CURTAIN_TUYA = None
     CAMERA_C3W_EZVIZ = None
     CAMERA_C3A_EZVIZ = None
+
+    # @classmethod
+    # def fromType(cls, deviceType):
+    #     if deviceType == DEVICE_TYPE.pir_detector:
+    #         return cls.PIR_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.CONTACTOR_WULIAN
+    #     elif deviceType == DEVICE_TYPE.smoke_detector:
+    #         return cls.SMOKER_WULIAN
+    #     elif deviceType == DEVICE_TYPE.water_leak_detector:
+    #         return cls.WATER_LEAKER_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.GAS_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.TEMP_HUMI_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.LIGHT_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.WALL_SWITCH_1_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.WALL_SWITCH_2_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.WALL_SWITCH_3_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.EMBEDDED_SWITCH_1_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.EMBEDDED_SWITCH_2_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.SCENE_SWITCH_6_WULIAN
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.GARAGE_DOOR_OPENER_TUYA
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.CAMERA_C3W_EZVIZ
+    #     elif deviceType == DEVICE_TYPE.contact_detector:
+    #         return cls.CAMERA_C3A_EZVIZ
+    #     return None
