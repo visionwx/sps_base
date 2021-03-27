@@ -526,6 +526,7 @@ def generateEmbeddedSwitchTemplate_WULIAN(numOfToggles):
     }
     devData["attributes"] = {
         "availableToggles": availableToggles,
+        "eletricalStatesSupported": eletricalStatesSupported
     }
     return devData
 
