@@ -17,3 +17,9 @@ class CONTACT_STATE:
 class GAS_STATE:
 	GAS_DETECTED  = "gas_detected"
 	NO_GAS_DETECTED = "no_gas_detected"
+
+# 零火开关 恢复状态设置
+# 即 断电恢复之后，是否恢复断电前的状态
+class RECOVER_STATE:
+	DO_NOT_RECOVER = "do_not_recover_previous_state"
+	RECOVER = "recover_previous_state"

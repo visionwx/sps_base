@@ -2,7 +2,7 @@ import copy
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.devices import DEVICE_CATEGORY, DEVICE_TYPE, DEVICE_VENDOR
 from sps_base.wulian import WULIAN_DEVICE_TYPE
-from sps_base.device_states import HUMAN_PASS_STATE,SMOKE_STATE,WATER_LEAK_STATE,CONTACT_STATE,GAS_STATE
+from sps_base.device_states import HUMAN_PASS_STATE,SMOKE_STATE,WATER_LEAK_STATE,CONTACT_STATE,GAS_STATE,RECOVER_STATE
 
 # 获取谷歌项目id
 projectId = getParaFromEnvironment("GCP_PROJECT")
@@ -382,10 +382,215 @@ def generateLightTemplate_WULIAN():
     return devData
 
 # WALL_SW_1,2,3
+def generateToggleConfig(numOfToggles):
+    currentToggleSettings = {}
+    availableToggles = []
+    for i in range(numOfToggles):
+        i += 1
+        data = {
+            "name": "switch" + str(i),
+            "name_values": [ 
+                {
+                    "name_synonym": ["switch" + str(i)],
+                    "lang": "en"
+                }
+            ]
+        }
+        availableToggles.append(data)
+        currentToggleSettings["switch" + str(i)] = False
+    return currentToggleSettings,availableToggles
+
+def generateWallSwitchTemplate_WULIAN(numOfToggles):
+    if numOfToggles > 3:
+        raise Exception("numOfTogglesExceed")
+    _name = ["One", "Two", "Three"]
+    _type = [DEVICE_TYPE.wall_switch_1, DEVICE_TYPE.wall_switch_2, DEVICE_TYPE.wall_switch_3]
+    currentToggleSettings,availableToggles = generateToggleConfig(numOfToggles)
+
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_switch
+    devData["type"]  = _type(numOfToggles)
+    devData["icons"] = generateIconsUrlConfig(_type(numOfToggles))
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": [_name[numOfToggles - 1] + "-Gang Wall Switch"],
+        "name": _name[numOfToggles - 1] + "-Gang Wall Switch",
+        "nicknames": [_name[numOfToggles - 1] + "-Gang Wall Switch"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZCSWNPW-S1322-01",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.Toggles"
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentToggleSettings": currentToggleSettings
+    }
+    devData["attributes"] = {
+        "availableToggles": availableToggles,
+    }
+    return devData
 
 # EMBEDED_SW_1,2
+eletricalStatesSupported = [
+	{
+		"name": "current",
+		"numericCapabilities": {
+			"rawValueUnit": "A",
+			"rawValueRange": {
+				"min": 0,
+				"max": 1000
+			}
+		},
+	},
+	{
+		"name": "voltage",
+		"numericCapabilities": {
+			"rawValueUnit": "V",
+			"rawValueRange": {
+				"min": 0,
+				"max": 10000
+			}
+		},
+	},
+	{
+		"name": "realTimePower",
+		"numericCapabilities": {
+			"rawValueUnit": "W",
+			"rawValueRange": {
+				"min": 0,
+				"max": 10000
+			}
+		},
+	},
+	{
+		"name": "powerConsumption",
+		"numericCapabilities": {
+			"rawValueUnit": "kW/h",
+			"rawValueRange": {
+				"min": 0,
+				"max": 10000
+			}
+		},
+	},
+	{
+		"name": "recoverMode",
+		"descriptiveCapabilities": {
+			"availableStates": [ RECOVER_STATE.DO_NOT_RECOVER, RECOVER_STATE.RECOVER ]
+		},
+	},
+]
+def generateEmbeddedSwitchTemplate_WULIAN(numOfToggles):
+    if numOfToggles > 2:
+        raise Exception("numOfTogglesExceed")
+    _name = ["One", "Two"]
+    _type = [DEVICE_TYPE.embedded_switch_1, DEVICE_TYPE.embedded_switch_2]
+    currentToggleSettings,availableToggles = generateToggleConfig(numOfToggles)
+
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_switch
+    devData["type"]  = _type(numOfToggles)
+    devData["icons"] = generateIconsUrlConfig(_type(numOfToggles))
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": [_name[numOfToggles - 1] + "-Gang Embedded Switch"],
+        "name": _name[numOfToggles - 1] + "-Gang Embedded Switch",
+        "nicknames": [_name[numOfToggles - 1] + "-Gang Embedded Switch"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZCSENPB-S0410-02",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.Toggles",
+        "action.devices.traits.Electric"
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentToggleSettings": currentToggleSettings,
+        "currentElectricalData": {
+            "voltage": None,
+            "current": None,
+            "realTimePower": None,
+            "powerConsumption": None,
+            "recoverMode": RECOVER_STATE.RECOVER
+        }
+    }
+    devData["attributes"] = {
+        "availableToggles": availableToggles,
+    }
+    return devData
 
 # SCENE_SW_6
+def generateSceneSwitchTemplate_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_switch
+    devData["type"]  = DEVICE_TYPE.scene_switch_6
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.scene_switch_6)
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": ["Scene Switch"],
+        "name": "Scene Switch",
+        "nicknames": ["Scene Switch"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZGCRNPW-S3011-02",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.SceneTrigger",
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentSceneSwitchStates": {
+            "switch1": None,
+            "switch2": None,
+            "switch3": None,
+            "switch4": None,
+            "switch5": None,
+            "switch6": None
+        }
+    }
+    devData["attributes"] = {
+        "availableSceneSwitches": [
+            {
+                "name": "switch1",
+                "binding_scene": None  # {"scene_id": <scene_id>, "scene_name": <scene_name>, "scene_icon": <scene_icon>}
+            },
+            {
+                "name": "switch2",
+                "binding_scene": None
+            },
+            {
+                "name": "switch3",
+                "binding_scene": None
+            },
+            {
+                "name": "switch4",
+                "binding_scene": None
+            },
+            {
+                "name": "switch5",
+                "binding_scene": None
+            },
+            {
+                "name": "switch6",
+                "binding_scene": None
+            }
+        ],
+    }
+    return devData
 
 # GARAGE_DOOR
 
@@ -399,12 +604,12 @@ class DeviceTemplates:
     GAS_WULIAN           = generateGASTemplate_WULIAN()
     TEMP_HUMI_WULIAN     = generateTempHumiTemplate_WULIAN()
     LIGHT_WULIAN         = generateLightTemplate_WULIAN()
-    WALL_SWITCH_1_WULIAN = None
-    WALL_SWITCH_2_WULIAN = None
-    WALL_SWITCH_3_WULIAN = None
-    EMBEDDED_SWITCH_1_WULIAN = None
-    EMBEDDED_SWITCH_2_WULIAN = None
-    SCENE_SWITCH_6_WULIAN    = None
+    WALL_SWITCH_1_WULIAN = generateWallSwitchTemplate_WULIAN(1)
+    WALL_SWITCH_2_WULIAN = generateWallSwitchTemplate_WULIAN(2)
+    WALL_SWITCH_3_WULIAN = generateWallSwitchTemplate_WULIAN(3)
+    EMBEDDED_SWITCH_1_WULIAN = generateEmbeddedSwitchTemplate_WULIAN(1)
+    EMBEDDED_SWITCH_2_WULIAN = generateEmbeddedSwitchTemplate_WULIAN(2)
+    SCENE_SWITCH_6_WULIAN    = generateSceneSwitchTemplate_WULIAN()
     GARAGE_DOOR_OPENER_TUYA  = None
     CAMERA_C3W_EZVIZ = None
     CAMERA_C3A_EZVIZ = None

@@ -6,6 +6,9 @@ SPS CORE Base lib
 - DB, PUBSUB Agent
 
 ## Change
+#### 2021-03-27 Update
+- 【新增】db/device_templates增加 开关类设备
+
 #### 2021-03-26 Update
 - 【修复】db/device.py DB bug修复
 - 【修复】pubsub/publisher.py 更新设备状态接口bug修复
