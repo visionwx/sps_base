@@ -494,8 +494,8 @@ def generateEmbeddedSwitchTemplate_WULIAN(numOfToggles):
 
     devData = copy.deepcopy(BASE_TEMPLATE)
     devData["category"] = DEVICE_CATEGORY.smart_switch
-    devData["type"]  = _type(numOfToggles)
-    devData["icons"] = generateIconsUrlConfig(_type(numOfToggles))
+    devData["type"]  = _type[numOfToggles-1]
+    devData["icons"] = generateIconsUrlConfig(_type[numOfToggles-1])
     devData["googleType"] = "action.devices.types.SENSOR"
     devData["name"] = {
         "defaultName": [_name[numOfToggles - 1] + "-Gang Embedded Switch"],
