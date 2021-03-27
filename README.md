@@ -6,6 +6,9 @@ SPS CORE Base lib
 - DB, PUBSUB Agent
 
 ## Change
+#### 2021-03-28 Update
+- 【新增】增加场景相关常量静态类，数据库类，和事件发布类
+
 #### 2021-03-27 Update
 - 【新增】db/device_templates增加 开关类设备
 
