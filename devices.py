@@ -126,6 +126,7 @@ class DEVICE_ALARM:
 	detect_water_leak = "detect_water_leak"
 	detect_switch_open = "detect_switch_open"
 	detect_switch_close = "detect_switch_close"
+	detect_scene_switch_click = "detect_scene_switch_click"
     # 物联消息代码 转换成告警消息
 	# message_code_to_alarm = {
 	# 	WULIAN_DEVICE_MESSAGE_CODE.device_online     : device_online,
