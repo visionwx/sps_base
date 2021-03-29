@@ -166,6 +166,21 @@ class Device:
             lambda item:item.to_dict(), 
             self.collectionRef.stream()
         )
+    
+    # 查找并更新
+    def findAndUpdate(self, updateData, condition = None):
+        fieldName, op, fieldValue = parseCondition(condition)
+
+        stream = None
+        if fieldName is not None:
+            stream = self.collectionRef.where(
+                    fieldName, op, fieldValue).stream()
+        else:
+            stream = self.collectionRef.stream()
+        
+        for perDoc in stream:
+            perDoc.reference.update(updateData)
+
 
 class DeviceHistoryAlarms:
     # init firestore object
