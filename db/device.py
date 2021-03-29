@@ -37,6 +37,17 @@ def parseUpdateData(updateData):
         mergeDict(result, vRef)
     return result
 
+# 把字典格式的 condition 转换成 三元组
+def parseCondition(condition):
+    if type(condition) is not dict:
+        return None,None,None
+
+    for fieldName in condition.keys():
+        for op,fieldValue in condition[fieldName].items():
+            return fieldName,op,fieldValue
+
+    return None,None,None
+
 class Device:
     # init firestore object
     DB = firestore.Client()
@@ -48,6 +59,7 @@ class Device:
         self.deviceId = deviceId
         self.deviceVendorPrefix = deviceVendorPrefix
         self.deviceRef = self.getDeviceRef()
+        self.collectionRef = self.getCollectionRef()
 
     # 获取设备数据库引用
     def getDeviceRef(self):
@@ -71,6 +83,15 @@ class Device:
 
         return deviceRef
     
+    def getCollectionRef(self):
+        colRef = self.DB.collection(COLLECTIONS.users
+            ).document(self.userId
+            ).collection(COLLECTIONS.houses
+            ).document(self.houseId
+            ).collection(COLLECTIONS.devices
+            )
+        return colRef
+
     # 检查设备引用是否存在
     def isDeviceExist(self):
         return self.deviceRef.get().exists
@@ -128,6 +149,23 @@ class Device:
             None
         )
         return result
+
+    # 数据获取
+    # condition = {"fieldName": {"operation": "fieldValue"}}
+    def list(self, condition = None):
+        fieldName, op, fieldValue = parseCondition(condition)
+
+        if fieldName is not None:
+            return map(
+                lambda item:item.to_dict(), 
+                self.collectionRef.where(
+                    fieldName, op, fieldValue).stream()
+            )
+        
+        return map(
+            lambda item:item.to_dict(), 
+            self.collectionRef.stream()
+        )
 
 class DeviceHistoryAlarms:
     # init firestore object
