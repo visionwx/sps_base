@@ -88,6 +88,12 @@ class DEVICE_VENDOR_PREFIX:
 	EZVIZ  = "0002"
 	TUYA   = "0003"
 
+# 设备厂商 用户id前缀，用于根据sps user id生成对应厂商的userId
+class DEVICE_VENDOR_USERID_PREFIX:
+	WULIAN = "wl"
+	EZVIZ  = "ez"
+	TUYA   = "ty"
+
 class SENSOR_STATE:
 	# PIR
 	HUMAN_PASS_DETECTED = "human_pass_detected"

@@ -4,7 +4,7 @@ from google.cloud import pubsub_v1
 from sps_base.exceptions import EnvironmentValueNotFoundException
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.utils.logger import getLogger
-from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC
+from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC, WULIAN_DEVICE_CMD
 
 TAG = "PUBLISHER"
 
@@ -96,6 +96,20 @@ def publishWulianAlarmMessageReceiveTopic(topicData):
 def publishWulianMessageReceiveTopic(topicData):
     publishTopic(
         VENDOR_MESSAGE_RECEIVE_TOPIC.WULIAN,
+        topicData
+    )
+
+# 发布物联gw同步消息
+def publishWulianDeviceSyncTopic(wulianUserId, wulianGwDeviceId):
+    topicData = {
+        "command_type": WULIAN_DEVICE_CMD.SYNC,
+        "command_para": {
+            "wulian_user_id": wulianUserId,
+            "wulian_gw_device_id": wulianGwDeviceId
+        }
+    }
+    publishTopic(
+        DEVICE_TOPIC.WULIAN_EXECUTE_DEVICE, 
         topicData
     )
 

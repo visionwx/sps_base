@@ -9,6 +9,7 @@ SPS CORE Base lib
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click
 - 【新增】增加 db/device.py Device.list接口
+- 【新增】增加 wulian网关同步主题发布方法 以及 相关常量
 
 #### 2021-03-28 Update
 - 【新增】增加场景相关常量静态类，数据库类，和事件发布类
