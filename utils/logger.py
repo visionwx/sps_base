@@ -59,21 +59,28 @@ class MyLogger:
         return logger
     
 
-    def info(self, TAG, logContent):
-        self.logger.info("[" + TAG + "], " + logContent)
+    def info(self, TAG, logContent, withPrint=False):
+        content = "[" + TAG + "], " + logContent
+        self.logger.info()
         self.logCounter += 1
+        if withPrint:
+            print(content)
         return True
     
 
-    def warn(self, TAG, logContent):
+    def warn(self, TAG, logContent, withPrint=False):
         self.logger.warn("[" + TAG + "], " + logContent)
         self.logCounter += 1
+        if withPrint:
+            print(content)
         return True
 
 
-    def error(self, TAG, logContent):
+    def error(self, TAG, logContent, withPrint=False):
         self.logger.error("[" + TAG + "], " + logContent)
         self.logCounter += 1
+        if withPrint:
+            print(content)
         return True
 
 LOGGER = None

@@ -15,6 +15,7 @@ SPS CORE Base lib
 - 【新增】db/device.py 临时新增get方法
 - 【新增】pubsub/publisher.py 新增publishDeviceExecuteTopic
 - 【修复】db/scene.py 修复 NAME错误
+- 【优化】utils/logger.py 增加withPrint参数
 
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click
