@@ -5,7 +5,7 @@ from sps_base.exceptions import EnvironmentValueNotFoundException
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.utils.logger import getLogger
 from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC
-from sps_base.devices import WULIAN_DEVICE_CMD
+from sps_base.devices import WULIAN_DEVICE_CMD, EXECUTE_DEVICE_TRIGGER
 
 TAG = "PUBLISHER"
 
@@ -71,6 +71,30 @@ def publishDeviceDeleteTopic(userId, houseId,
         DEVICE_TOPIC.DELETE, 
         userId, houseId, deviceId, 
         deviceData)
+
+# 发布执行设备指令 事件
+def publishDeviceExecuteTopic(userId, houseId, 
+    deviceId, executions, trigger, triggerData):
+    topicId = DEVICE_TOPIC.EXECUTE
+    topicData = {
+        "user_id": userId,
+        "house_id": houseId,
+        "device_id": deviceId,
+        "executions": executions,
+        "trigger": trigger,
+        "trigger_data": triggerData
+    }
+    publishTopic(topicId, topicData)
+
+# 由 场景review触发 的 设备指令执行 事件发布
+def publishDeviceExecuteTopicBySceneReview(userId, houseId, 
+    deviceId, executions, sceneId):
+    trigger = EXECUTE_DEVICE_TRIGGER.SCENE
+    triggerData = {
+        "scene_id": sceneId
+    }
+    publishDeviceExecuteTopic(userId, houseId, 
+        deviceId, executions, trigger, triggerData)
 
 # 发布收到物联 data  类型消息
 def publishWulianDataMessageReceiveTopic(topicData):
