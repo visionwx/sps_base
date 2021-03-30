@@ -29,7 +29,8 @@ class Collection(metaclass=abc.ABCMeta):
         return None,None,None
 
     def add(self, data):
-        return self.REF.add(data)
+        _,docRef = self.REF.add(data)
+        return docRef.id
     
     def delete(self, documentId):
         return self.REF.document(
