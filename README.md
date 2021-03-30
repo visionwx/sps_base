@@ -12,6 +12,7 @@ SPS CORE Base lib
 - 【新增】db/base.py 新增Collection基类，用于抽象对数据库操作
 - 【新增】db/device.py 新增 DeviceStateEventSubcriber
 - 【优化】db/base.py 优化add接口，增加db/scene.py
+- 【新增】db/device.py 临时新增get方法
 
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click

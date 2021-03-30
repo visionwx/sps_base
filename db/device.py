@@ -151,6 +151,13 @@ class Device:
         )
         return result
 
+    def get(self, documentId):
+        docRef = self.collectionRef.document(
+            documentId)
+        if not docRef.get().exists:
+            return None
+        return docRef.get().to_dict()
+
     # 数据获取
     # condition = {"fieldName": {"operation": "fieldValue"}}
     def list(self, condition = None):
