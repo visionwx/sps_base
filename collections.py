@@ -3,6 +3,7 @@ class COLLECTIONS:
 	vendor = "vendor"
 	user_tokens = "user_tokens"
 	deviceInfo = "deviceInfo"
+	deviceStateEventSubcriber = "deviceStateEventSubcriber"
 	emailCodes = "emailCodes"
 	supportDevices = "supportDevices"
 	deviceDataModel = "deviceDataModel"

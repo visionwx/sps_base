@@ -9,6 +9,8 @@ SPS CORE Base lib
 #### 2021-03-30 Update
 - 【修复】pubsub/publisher.py WULIAN_DEVICE_CMD 导入错误修复
 - 【修复】pubsub/publisher.py WULIAN_EXECUTE 变量名错误
+- 【新增】db/base.py 新增Collection基类，用于抽象对数据库操作
+- 【新增】db/device.py 新增 DeviceStateEventSubcriber
 
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click

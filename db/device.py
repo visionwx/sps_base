@@ -2,6 +2,7 @@ from sps_base.collections import COLLECTIONS
 from sps_base.exceptions import UserNotExistException, HouseNotExistException, DeviceNotExistException
 from google.cloud import firestore
 from sps_base.pubsub.publisher import publishDeviceCreateTopic, publishDeviceUpdateTopic, publishDeviceDeleteTopic
+from sps_base.db.base import Collection
 
 # 将 dict2 合并 到 dict1, 支持多级嵌套合并
 def mergeDict(dic1, dic2):
@@ -230,6 +231,7 @@ class DeviceHistoryDatas:
         result = self.collectionRef.add(data)
         return result
 
+# 设备位置信息表，存储设备当前在哪个用户的哪个house下面
 class DeviceInfo:
     # init firestore object
     DB = firestore.Client()
@@ -259,3 +261,14 @@ class DeviceInfo:
         if not self.documentRef.get().exists:
             return None
         return self.documentRef.get().to_dict()
+
+
+# 设备状态订阅 集合表
+class DeviceStateEventSubcriber(Collection):
+    # 集合名称
+    NAME = COLLECTIONS.deviceStateEventSubcriber
+
+    # 重写实现，获取数据表集合引用
+    def getCollectionRef(self):
+        colRef = self.DB.collection(self.NAME)
+        return colRef
