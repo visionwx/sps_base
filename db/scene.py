@@ -16,7 +16,7 @@ class Scene(Collection):
             ).document(self.userId
             ).collection(COLLECTIONS.houses
             ).document(self.houseId
-            ).collection(NAME)
+            ).collection(self.NAME)
         return colRef
 
     # 重写，数据创建接口
