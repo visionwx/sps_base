@@ -4,7 +4,8 @@ from google.cloud import pubsub_v1
 from sps_base.exceptions import EnvironmentValueNotFoundException
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.utils.logger import getLogger
-from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC, WULIAN_DEVICE_CMD
+from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC
+from sps_base.devices import WULIAN_DEVICE_CMD
 
 TAG = "PUBLISHER"
 

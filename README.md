@@ -6,6 +6,9 @@ SPS CORE Base lib
 - DB, PUBSUB Agent
 
 ## Change
+#### 2021-03-30 Update
+- 【修复】pubsub/publisher.py WULIAN_DEVICE_CMD 导入错误修复
+
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click
 - 【新增】增加 db/device.py Device.list接口
