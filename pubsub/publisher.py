@@ -110,7 +110,7 @@ def publishWulianDeviceSyncTopic(wulianUserId, wulianGwDeviceId):
         }
     }
     publishTopic(
-        DEVICE_TOPIC.WULIAN_EXECUTE_DEVICE, 
+        DEVICE_TOPIC.WULIAN_EXECUTE, 
         topicData
     )
 

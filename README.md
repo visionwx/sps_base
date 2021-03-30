@@ -8,6 +8,7 @@ SPS CORE Base lib
 ## Change
 #### 2021-03-30 Update
 - 【修复】pubsub/publisher.py WULIAN_DEVICE_CMD 导入错误修复
+- 【修复】pubsub/publisher.py WULIAN_EXECUTE 变量名错误
 
 #### 2021-03-29 Update
 - 【新增】增加 DEVICE_ALARM.detect_scene_switch_click
