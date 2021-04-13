@@ -10,6 +10,11 @@ SPS CORE Base lib
 pip3 install git+https://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@github.com/samdychen/sps_base.git
 ```
 
+## Test
+```
+export GCP_PROJECT=my-first-action-project-96da6
+```
+
 ## Change
 #### 2021-04-13 Update
 - 【优化】改成 python pacakge
