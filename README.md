@@ -6,6 +6,9 @@ SPS CORE Base lib
 - DB, PUBSUB Agent
 
 ## Change
+#### 2021-04-13 Update
+- 【优化】改成 python pacakge
+
 #### 2021-03-30 Update
 - 【修复】pubsub/publisher.py WULIAN_DEVICE_CMD 导入错误修复
 - 【修复】pubsub/publisher.py WULIAN_EXECUTE 变量名错误

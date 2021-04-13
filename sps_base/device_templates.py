@@ -593,26 +593,113 @@ def generateSceneSwitchTemplate_WULIAN():
     }
     return devData
 
-# GARAGE_DOOR
+# GARAGE DOOR OPENER
+def generateGarageDoorOpenerTemplate_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_switch
+    devData["type"]  = DEVICE_TYPE.garage_door_opener
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.garage_door_opener)
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": ["Tuya Garage Door Opener"],
+        "name": "Tuya Garage Door Opener",
+        "nicknames": ["Tuya Garage Door Opener"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.TUYA,
+        "productPicture": None,
+        "model": "GD-DC5",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.Toggles",
+    ]
+    devData["states"] = {
+        "online": False,
+        "currentToggleSettings": {"switch1": False},
+    }
+    devData["attributes"] = {
+        "availableToggles": [
+            {
+                "name": "switch1",
+                "name_values": [ 
+                    {
+                        "name_synonym": ["switch1"],
+                        "lang": "en"
+                    }
+                ]
+            }
+        ],
+    }
+    return devData
 
-# 
+# CURTAIN OPENER
+def generateCurtainOpenerTemplate_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_switch
+    devData["type"]  = DEVICE_TYPE.curtain_opener
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.curtain_opener)
+    devData["googleType"] = "action.devices.types.SENSOR"
+    devData["name"] = {
+        "defaultName": ["Blinds Controller"],
+        "name": "Blinds Controller",
+        "nicknames": ["Blinds Controllerr"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.TUYA,
+        "productPicture": None,
+        "model": "3r8gc33pnqsxfe1g",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = [
+        "action.devices.traits.OpenClose",
+    ]
+    devData["states"] = {
+        "online": False,
+        "openState": {
+            "openPercent": 30,
+            "openStatus": "stop", # open/close/stop/opening/closing
+            "openDirection": "DOWN"
+        },
+    }
+    devData["attributes"] = {
+        "discreteOnlyOpenClose": False,
+        "openDirection": ["UP", "DOWN", "LEFT", "RIGHT", "IN", "OUT"],
+        "commandOnlyOpenClose": False,
+        "queryOnlyOpenClose": False
+    }
+    return devData
 
 class DeviceTemplates:
+    # 获取红外入侵检测器数据模版
     PIR_WULIAN           = generatePIRTemplate_WULIAN()
+    # 获取门窗磁感应器数据模版
     CONTACTOR_WULIAN     = generateContactorTemplate_WULIAN()
+    # 获取烟雾检测器数据模版
     SMOKER_WULIAN        = generateSmokerTemplate_WULIAN()
+    # 获取水浸检测器数据模版
     WATER_LEAKER_WULIAN  = generateWaterLeakerTemplate_WULIAN()
+    # 获取天然气检测器数据模版
     GAS_WULIAN           = generateGASTemplate_WULIAN()
+    # 获取温湿度检测器数据模版
     TEMP_HUMI_WULIAN     = generateTempHumiTemplate_WULIAN()
+    # 获取光强检测器数据模版
     LIGHT_WULIAN         = generateLightTemplate_WULIAN()
+    # 获取墙壁开关数据模版，1，2，3分别代表1联，2联，3联开关
     WALL_SWITCH_1_WULIAN = generateWallSwitchTemplate_WULIAN(1)
     WALL_SWITCH_2_WULIAN = generateWallSwitchTemplate_WULIAN(2)
     WALL_SWITCH_3_WULIAN = generateWallSwitchTemplate_WULIAN(3)
+    # 获取零火开关数据模版，1，2分别代表1联，2联开关
     EMBEDDED_SWITCH_1_WULIAN = generateEmbeddedSwitchTemplate_WULIAN(1)
     EMBEDDED_SWITCH_2_WULIAN = generateEmbeddedSwitchTemplate_WULIAN(2)
+    # 获取场景开关数据模版
     SCENE_SWITCH_6_WULIAN    = generateSceneSwitchTemplate_WULIAN()
-    GARAGE_DOOR_OPENER_TUYA  = None
-    CURTAIN_TUYA = None
+    # 获取车库门控制器数据模版
+    GARAGE_DOOR_OPENER_TUYA  = generateGarageDoorOpenerTemplate_WULIAN()
+    # 获取窗帘控制器数据模版
+    CURTAIN_TUYA = generateCurtainOpenerTemplate_WULIAN()
     CAMERA_C3W_EZVIZ = None
     CAMERA_C3A_EZVIZ = None
 

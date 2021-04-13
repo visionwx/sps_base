@@ -78,38 +78,53 @@ class DEVICE_TYPE:
 
 # 设备厂商 代码
 class DEVICE_VENDOR:
+	# 物联
 	WULIAN = "devices.vendor.WULIAN"
+	# 萤石
 	EZVIZ  = "devices.vendor.EZVIZ"
+	# 涂鸦
 	TUYA   = "devices.vendor.TUYA"
 
 # 设备厂商 代码前缀
+# 该前缀将追加到厂商的设备id，形成sps的设备id
 class DEVICE_VENDOR_PREFIX:
+	# 物联
 	WULIAN = "0001"
+	# 萤石
 	EZVIZ  = "0002"
+	# 涂鸦
 	TUYA   = "0003"
 
 # 设备厂商 用户id前缀，用于根据sps user id生成对应厂商的userId
 class DEVICE_VENDOR_USERID_PREFIX:
+	# 物联
 	WULIAN = "wl"
+	# 萤石
 	EZVIZ  = "ez"
+	# 涂鸦
 	TUYA   = "ty"
 
+# 传感器类设备的状态常量
 class SENSOR_STATE:
-	# PIR
+	# PIR 红外入侵检测
 	HUMAN_PASS_DETECTED = "human_pass_detected"
 	NO_HUMAN_PASS_DETECTED = "no_human_pass_detected"
-	# CONTACTOR
+	# CONTACTOR 门窗磁检测器
 	CONTACTOR_OPEN_DETECTED = "contactor_open_detected"
 	CONTACTOR_CLOSE_DETECTED = "contactor_close_detected"
-	# SMOKE
+	# SMOKE 烟雾检测器
 	SMOKE_DETECTED = "smoke_detected"
 	NO_SMOKE_DETECTED = "no_smoke_detected"
-	# WATER LEAK
+	# WATER LEAK 水浸检测器
 	WATER_LEAK_DETECTED = "water_leak_detected"
 	NO_WATER_LEAK_DETECTED = "no_water_leak_detected"
-	# GAS
+	# GAS 天然气检测器
 	GAS_DETECTED = "gas_detected"
 	NO_GAS_DETECTED = "no_gas_detected"
+	# 零火开关 恢复状态设置
+	# 即 断电恢复之后，是否恢复断电前的状态
+	DO_NOT_RECOVER = "do_not_recover_previous_state"
+	RECOVER = "recover_previous_state"
 
 # 所有设备告警
 class DEVICE_ALARM:
@@ -159,7 +174,7 @@ class DEVICE_ALARM:
 class DEVICE_COMMAND:
 	# command for traits=action.devices.traits.ArmDisarm
 	ARM_DISARM = "action.devices.commands.ArmDisarm" # 设防或者撤防操作
-	# command for traits=action.devices.traints.Toggles
+	# command for traits=action.devices.traits.Toggles
 	SET_TOGGLES = "action.devices.commands.SetToggles" # 开光打开，或者关闭
 	SWITCH_TOGGLES = "action.devices.commands.SwitchToggles" # 开关切换
 	TOGGLES_STATUS = "action.devices.commands.TogglesStatus" # 开关状态更新
@@ -175,9 +190,13 @@ class DEVICE_COMMAND:
 	# EZVIZ 动作检测配置
 	CONFIG_MOTION_SENTIVITY = "action.devices.commands.ConfigMotionSentivity"
 	CONFIG_MOTION_AREA      = "action.devices.commands.ConfigMotionArea"
-	CONFIG_MOTION_SOUND      = "action.devices.commands.ConfigMotionSound"
+	CONFIG_MOTION_SOUND     = "action.devices.commands.ConfigMotionSound"
+	# 窗帘控制器
+	OPEN_CLOSE          = "action.devices.commands.OpenClose"
+	OPEN_CLOSE_PERCENT          = "action.devices.commands.OpenClosePercent"
+	OPEN_CLOSE_RELATIVE = "action.devices.commands.OpenCloseRelative"
 
-# 执行设备的触发源
+# 执行设备指令的触发源
 class EXECUTE_DEVICE_TRIGGER:
     # 由手动执行触发
 	MANUAL = "device.trigger.MANUAL"
@@ -214,3 +233,7 @@ class TUYA_DEVICE_CMD:
 	SET_TOGGLES = DEVICE_COMMAND.SET_TOGGLES
 	SWITCH_TOGGLES = DEVICE_COMMAND.SWITCH_TOGGLES
 	TOGGLES_STATUS = DEVICE_COMMAND.TOGGLES_STATUS
+	OPEN_CLOSE          = DEVICE_COMMAND.OPEN_CLOSE
+	OPEN_CLOSE_PERCENT  = DEVICE_COMMAND.OPEN_CLOSE_PERCENT
+	OPEN_CLOSE_RELATIVE = DEVICE_COMMAND.OPEN_CLOSE_RELATIVE
+
