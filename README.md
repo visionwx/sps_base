@@ -5,9 +5,15 @@ SPS CORE Base lib
 - COLLECTIONS
 - DB, PUBSUB Agent
 
+## Usage
+```
+pip3 install git+https://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@github.com/samdychen/sps_base.git
+```
+
 ## Change
 #### 2021-04-13 Update
 - 【优化】改成 python pacakge
+- 【优化】数据库操作类优化，全部集成基类实现
 
 #### 2021-03-30 Update
 - 【修复】pubsub/publisher.py WULIAN_DEVICE_CMD 导入错误修复

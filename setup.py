@@ -30,7 +30,7 @@ setup(
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     url=URL,
-    packages=find_packages(exclude=["tests*"]),
+    packages=find_packages(exclude=["tests*","build","dist","*egg-info*"]),
     include_package_data=True,
     platforms="any",
     install_requires=REQUIRES,

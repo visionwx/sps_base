@@ -2,7 +2,7 @@ from sps_base.collections import COLLECTIONS
 from sps_base.exceptions import UserNotExistException, HouseNotExistException, DeviceNotExistException
 from google.cloud import firestore
 from sps_base.pubsub.publisher import publishDeviceCreateTopic, publishDeviceUpdateTopic, publishDeviceDeleteTopic
-from sps_base.db.base import Collection, Document, UserHouseCollection
+from sps_base.db.base import Collection
 
 # 将 dict2 合并 到 dict1, 支持多级嵌套合并
 def mergeDict(dic1, dic2):
@@ -38,118 +38,17 @@ def parseUpdateData(updateData):
         mergeDict(result, vRef)
     return result
 
-# 即将废弃
 # 把字典格式的 condition 转换成 三元组
 def parseCondition(condition):
     if type(condition) is not dict:
         return None,None,None
+
     for fieldName in condition.keys():
         for op,fieldValue in condition[fieldName].items():
             return fieldName,op,fieldValue
+
     return None,None,None
 
-# 设备 文档类
-class DeviceDocument(Document):
-    # 构造函数，重写
-    def __init__(self, userId, houseId, deviceId, 
-        deviceVendorPrefix):
-        self.userId = userId
-        self.houseId = houseId
-        self.deviceId = deviceId
-        self.deviceVendorPrefix = deviceVendorPrefix
-        self.REF = self.getDocumentRef()
-        
-    # 获取设备数据库引用
-    def getDocumentRef(self):
-        # 检查用户，房子，是否存在
-        deviceRef = self.DB.collection(COLLECTIONS.users
-            ).document(self.userId
-            ).collection(COLLECTIONS.houses
-            ).document(self.houseId
-            ).collection(COLLECTIONS.devices
-            ).document(self.deviceId)
-        return deviceRef
-    
-    # 数据创建接口 重写
-    def create(self, data):
-        # 数据检查
-        # 执行操作
-        result = super().create(data)
-        # 发布事件
-        publishDeviceCreateTopic(
-            self.userId, 
-            self.houseId, 
-            self.deviceId,
-            data
-        )
-        return result
-    
-    # 数据更新接口 重写
-    def update(self, data):
-        # 数据检查
-        if not super().exists():
-            raise DeviceNotExistException(
-                self.userId, 
-                self.houseId,
-                self.deviceId
-            )
-        # 执行操作
-        result = super().update(data)
-        # 发布事件
-        publishDeviceUpdateTopic(
-            self.userId, 
-            self.houseId, 
-            self.deviceId,
-            parseUpdateData(data)
-        )
-        return result
-    
-    # 数据删除接口 重写
-    def delete(self):
-        # 数据检查
-        if not super().exists():
-            raise DeviceNotExistException(
-                self.userId, 
-                self.houseId,
-                self.deviceId
-            )
-        # 执行操作
-        result = super().delete()
-        # 发布事件
-        publishDeviceDeleteTopic(
-            self.userId, 
-            self.houseId, 
-            self.deviceId,
-            None
-        )
-        return result
-
-# 设备位置信息表，存储设备当前在哪个用户的哪个house下面
-class DeviceInfoDocument(Document):
-    # 重写集合名称
-    NAME = COLLECTIONS.deviceInfo
-
-# 设备历史告警 集合类
-class DeviceHistoryAlarmsCollection(UserHouseCollection):
-    # 重写 name 字段
-    NAME = COLLECTIONS.deviceHistoryAlarms
-
-# 设备历史状态数据 集合类
-class DeviceHistoryDatasCollection(UserHouseCollection):
-    # 重写 name 字段
-    NAME = COLLECTIONS.deviceHistoryDatas
-
-# 设备操作日志数据 集合类
-class DeviceOperationsCollection(UserHouseCollection):
-    # 重写 name 字段
-    NAME = COLLECTIONS.deviceOperations
-
-# 设备状态订阅 集合表
-class DeviceStateEventSubcriberCollection(Collection):
-    # 集合名称
-    NAME = COLLECTIONS.deviceStateEventSubcriber
-
-# 即将废弃
 class Device:
     # init firestore object
     DB = firestore.Client()
@@ -289,7 +188,8 @@ class Device:
         
         for perDoc in stream:
             perDoc.reference.update(updateData)
-# 即将废弃
+
+
 class DeviceHistoryAlarms:
     # init firestore object
     DB = firestore.Client()
@@ -313,7 +213,7 @@ class DeviceHistoryAlarms:
     def add(self, data):
         result = self.collectionRef.add(data)
         return result
-# 即将废弃
+
 class DeviceHistoryDatas:
     # init firestore object
     DB = firestore.Client()
@@ -337,7 +237,7 @@ class DeviceHistoryDatas:
     def add(self, data):
         result = self.collectionRef.add(data)
         return result
-# 即将废弃
+
 # 设备位置信息表，存储设备当前在哪个用户的哪个house下面
 class DeviceInfo:
     # init firestore object
@@ -368,7 +268,8 @@ class DeviceInfo:
         if not self.documentRef.get().exists:
             return None
         return self.documentRef.get().to_dict()
-# 即将废弃
+
+
 # 设备状态订阅 集合表
 class DeviceStateEventSubcriber(Collection):
     # 集合名称
