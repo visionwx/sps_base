@@ -47,3 +47,11 @@ class WulianMessageParameterMissingException(Exception):
         self.messageField = messageField
     def __str__(self):
         print("Wulian message parameter:" + self.messageField  + " missing")
+
+# token未提供
+class UserTokenNotProvideException(Exception):
+    pass
+
+# token失效
+class UserTokenExpireException(Exception):
+    pass
