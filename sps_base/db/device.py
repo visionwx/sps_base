@@ -149,6 +149,7 @@ class DeviceStateEventSubcriberCollection(Collection):
     # 集合名称
     NAME = COLLECTIONS.deviceStateEventSubcriber
 
+
 # 即将废弃
 class Device:
     # init firestore object

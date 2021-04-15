@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-15 Update
+- 【增加】新增萤石c3w/c3a/c3x/lc1c/bc1数据模版生成函数
+
 #### 2021-04-13 Update
 - 【优化】改成 python pacakge
 - 【优化】数据库操作类优化，全部集成基类实现

@@ -672,6 +672,246 @@ def generateCurtainOpenerTemplate_WULIAN():
     }
     return devData
 
+# 增加 SmartDetect 特性
+def addSmartDetectTraits(deviceData, supportHuman=False, supportCar=False):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.SmartDetect")
+    # 初始化状态值
+    deviceData["states"]["currentSmartDetectStates"] = {
+        "enable": True,
+        "detectType": 3,
+        "motionSentivity": 3,
+        "alarmSoundType": 0
+    }
+    # 初始化属性值
+    deviceData["attributes"]["smartDetectSupported"] = {
+        "supportTypes": [
+            {"name": "only motion", "value":3,},
+        ],
+        "supportMotionSentivity": [
+            {"name": "low", "value": 0,},
+            {"name": "medium", "value": 3,},
+            {"name": "high", "value": 6,},
+        ],
+        "supportAlarmSoundTypes": [
+            {"name": "short", "value": 0,},
+            {"name": "long", "value": 1,},
+            {"name": "silent", "value": 2,},
+        ],
+        "motionAreaConfiguration": None,  # [{"topLeftPoint": [], "botRightPoint": []},],
+        "crossBorderConfiguration": None, # [{startPoint: [], endPoint: [], direction: 1},],
+    }
+    if supportHuman:
+        deviceData["attributes"]["smartDetectSupported"]["supportTypes"] = [
+            {"name": "only motion", "value":3,},
+            {"name": "only human", "value":1,},
+        ]
+    if supportCar:
+        deviceData["attributes"]["smartDetectSupported"]["supportTypes"] = [
+            {"name": "only motion", "value":3,},
+            {"name": "only human", "value":1,},
+            {"name": "only car", "value":2,},
+            {"name": "human and car", "value":0,},
+        ]
+    return deviceData
+
+# 增加 NightVision 特性
+def addNightVisionTraits(deviceData, supportSpotLight=False):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.NightVision")
+    # 初始化状态
+    deviceData["states"]["currentNightVisionStates"] = {
+        "spotLightMode": 2,
+        "spotLightBrightness": 50,
+        "irLightMode": 0,
+        "irLightSensitivity": 2,
+    }
+    # 初始化属性
+    deviceData["attributes"]["nightVisionSupported"] = {
+        "supportIRLightMode": [
+            {"name": "Smart Mode(Recommended)", "value": 0, "description": "Auto-Switch Day/Night Mode."},
+            {"name": "Enforcing Day Mode", "value": 1, "description": "IR-Light stays off."},
+            {"name": "Enforcing Night Mode", "value": 2, "description": "IR-Light stays on."},
+        ],
+        "supportIRLightSensitivity": [
+            {"name": "Low", "value": 1, "description": "Low Sensitivity"},
+            {"name": "Medium", "value": 2, "description": "Medium Sensitivity"},
+            {"name": "High", "value": 3, "description": "High Sensitivity"},
+        ],
+    }
+    if supportSpotLight:
+        deviceData["attributes"]["nightVisionSupported"]["supportSpotLightMode"] = [
+            {"name": "Smart Mode(Recommended)", "value": 2, "description": "Black/White mode by default, Switch to color mode when motion detected."},
+            {"name": "Black/White Mode", "value": 0, "description": "IR Light, of high invisibility and the image is black and white."},
+            {"name": "Color Mode", "value": 1, "description": "Warm light, can be used as night light and the image is colorful."},
+        ]
+        deviceData["attributes"]["nightVisionSupported"]["supportSpotLightBrightnessRange"] = [0, 100]
+        
+    return deviceData
+
+# 增加 LiveVideo 特性
+def addLiveVideoTraits(deviceData):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.LiveVideo")
+    # 初始化状态
+    deviceData["states"]["currentLiveVideoStates"] = {
+        "encryptVideo": True, # 是否加密视频
+        "flipImage": False,    # 是否翻转画面
+        "enableMicro": True, # 是否开启麦克风
+    }
+    return deviceData
+
+# 增加 Battery 特性
+def addBatteryTraits(deviceData):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.Battery")
+    # 初始化状态
+    deviceData["states"]["currentBatteryStates"] = {
+        "avaliablePower": 50, # 剩余用电量
+        "workMode": 0,        # 电池工作模式
+    }
+    # 初始化属性值
+    deviceData["attributes"]["batterySupported"] = {
+        "supportWorkMode": [
+            {"name": "save power", "value": 0,},
+            {"name": "performance mode", "value": 1,},
+        ],
+    }
+    return deviceData
+
+# 增加 sd卡存储 特性
+def addSDStorageTraits(deviceData):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.SDStorage")
+    # 初始化状态
+    deviceData["states"]["currentSDStorageStates"] = {
+        "status": -1, # sd卡工作状态， -1表示没有插入sd卡
+    }
+    return deviceData
+
+# 增加 云存储 特性
+def addCloudStorageTraits(deviceData):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.CloudStorage")
+    # 初始化状态
+    deviceData["states"]["currentCloudStorageStates"] = {
+        "status": -1, # 云存储工作状态， -1表示没有购买套餐
+    }
+    # 初始化属性值
+    # "name": "套餐名称", "expireDate": "套餐到期日期"
+    deviceData["attributes"]["cloudStorageSupported"] = None
+    return deviceData
+
+# 增加 FloodLight 特性
+def addFloodLightTraits(deviceData):
+    # 增加traits
+    deviceData["traits"].append("action.devices.traits.FloodLight")
+    # 初始化状态
+    deviceData["states"]["currentFloodLightStates"] = {
+        "brightness": 30, # 当前亮度
+    }
+    # 初始化属性值
+    # "name": "套餐名称", "expireDate": "套餐到期日期"
+    deviceData["attributes"]["floodLightSupported"] = {
+        # 庭院灯自动开启/关闭设置
+        # [
+        #     {
+        #         "startTime": 19,
+        #         "endTime": 7,
+        #         "repeat": [1,2,3,4,5,6,7], # 1-7 分别代表周一 到 周日
+        #     }
+        # ]
+        "scheduleConfig": None,
+    }
+    return deviceData
+
+# 生成萤石摄像头数据模版
+def generateCameraTemplate_EZVIZ(deviceType, deviceName):
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_camera
+    devData["type"]  = deviceType
+    devData["icons"] = generateIconsUrlConfig(deviceType)
+    devData["googleType"] = "action.devices.types.CAMERA"
+    devData["name"] = {
+        "defaultName": [deviceName],
+        "name": deviceName,
+        "nicknames": [deviceName]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.EZVIZ,
+        "productPicture": None,
+        "model": "3r8gc33pnqsxfe1g",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = []
+    devData["states"] = {
+        "online": False,
+    }
+    devData["attributes"] = {}
+    return devData
+
+# EZVIZ C3W
+def generateC3WTemplate_EZVIZ():
+    devData = generateCameraTemplate_EZVIZ(
+        DEVICE_TYPE.camera_c3w, "C3W Camera")
+    # 增加特性
+    devData = addSmartDetectTraits(devData)
+    devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData)
+    devData = addSDStorageTraits(devData)
+    devData = addCloudStorageTraits(devData)
+    return devData
+
+# EZVIZ C3A
+def generateC3ATemplate_EZVIZ():
+    devData = generateCameraTemplate_EZVIZ(
+        DEVICE_TYPE.camera_c3a, "C3A Camera")
+    # 增加特性
+    devData = addSmartDetectTraits(devData)
+    devData = addNightVisionTraits(devData)
+    devData = addLiveVideoTraits(devData)
+    devData = addSDStorageTraits(devData)
+    devData = addCloudStorageTraits(devData)
+    return devData
+
+# EZVIZ C3X
+def generateC3XTemplate_EZVIZ():
+    devData = generateCameraTemplate_EZVIZ(
+        DEVICE_TYPE.camera_c3x, "C3X Camera")
+    # 增加特性
+    devData = addSmartDetectTraits(devData, supportHuman=True, supportCar=True)
+    devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData)
+    devData = addSDStorageTraits(devData)
+    devData = addCloudStorageTraits(devData)
+    return devData
+
+# EZVIZ LC1C
+def generateLC1CTemplate_EZVIZ():
+    devData = generateCameraTemplate_EZVIZ(
+        DEVICE_TYPE.camera_lc1c, "LC1C Camera")
+    # 增加特性
+    devData = addSmartDetectTraits(devData)
+    devData = addNightVisionTraits(devData, supportSpotLight=False)
+    devData = addLiveVideoTraits(devData)
+    devData = addSDStorageTraits(devData)
+    devData = addCloudStorageTraits(devData)
+    devData = addFloodLightTraits(devData)
+    return devData
+
+# EZVIZ BC1
+def generateBC1Template_EZVIZ():
+    devData = generateCameraTemplate_EZVIZ(
+        DEVICE_TYPE.camera_bc1, "BC1 Camera")
+    # 增加特性
+    devData = addSmartDetectTraits(devData, supportHuman=True)
+    devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData)
+    devData = addSDStorageTraits(devData)
+    devData = addCloudStorageTraits(devData)
+    return devData
+
 class DeviceTemplates:
     # 获取红外入侵检测器数据模版
     PIR_WULIAN           = generatePIRTemplate_WULIAN()
@@ -700,8 +940,12 @@ class DeviceTemplates:
     GARAGE_DOOR_OPENER_TUYA  = generateGarageDoorOpenerTemplate_WULIAN()
     # 获取窗帘控制器数据模版
     CURTAIN_TUYA = generateCurtainOpenerTemplate_WULIAN()
-    CAMERA_C3W_EZVIZ = None
-    CAMERA_C3A_EZVIZ = None
+    CAMERA_C3W_EZVIZ  = generateC3WTemplate_EZVIZ()
+    CAMERA_C3A_EZVIZ  = generateC3ATemplate_EZVIZ()
+    CAMERA_C3X_EZVIZ  = generateC3XTemplate_EZVIZ()
+    CAMERA_LC1C_EZVIZ = generateLC1CTemplate_EZVIZ()
+    CAMERA_BC1_EZVIZ  = generateBC1Template_EZVIZ()
+    CAMERA_W2H_EZVIZ  = None
 
     # @classmethod
     # def fromType(cls, deviceType):
