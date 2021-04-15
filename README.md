@@ -17,6 +17,7 @@ export GCP_PROJECT=my-first-action-project-96da6
 
 ## Change
 #### 2021-04-15 Update
+- 【增加】pubsub/publisher.py新增发布设备get指令topic
 - 【增加】新增萤石c3w/c3a/c3x/lc1c/bc1数据模版生成函数
 
 #### 2021-04-13 Update

@@ -138,6 +138,20 @@ def publishWulianDeviceSyncTopic(wulianUserId, wulianGwDeviceId):
         topicData
     )
 
+# 发布物联device get指令消息
+def publishWulianDeviceGetTopic(wulianUserId, wulianGwDeviceId):
+    topicData = {
+        "command_type": WULIAN_DEVICE_CMD.GET,
+        "command_para": {
+            "wulian_user_id": wulianUserId,
+            "wulian_gw_device_id": wulianGwDeviceId
+        }
+    }
+    publishTopic(
+        DEVICE_TOPIC.WULIAN_EXECUTE, 
+        topicData
+    )
+
 # 发布场景相关事件
 def publishSceneTopic(topicId, userId, houseId, 
     sceneId, sceneData, 
