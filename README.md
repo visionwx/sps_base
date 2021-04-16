@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-16 Update
+- 【优化】优化DeviceTemplate类，增加fromType方法
+
 #### 2021-04-15 Update
 - 【增加】auth/authorization.py新增获取用户当前房子信息函数
 - 【增加】新增auth/authorization.py

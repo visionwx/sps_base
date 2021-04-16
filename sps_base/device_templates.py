@@ -1,4 +1,5 @@
 import copy
+from functools import wraps
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.devices import DEVICE_CATEGORY, DEVICE_TYPE, DEVICE_VENDOR
 from sps_base.wulian import WULIAN_DEVICE_TYPE
@@ -594,7 +595,7 @@ def generateSceneSwitchTemplate_WULIAN():
     return devData
 
 # GARAGE DOOR OPENER
-def generateGarageDoorOpenerTemplate_WULIAN():
+def generateGarageDoorOpenerTemplate_TUYA():
     devData = copy.deepcopy(BASE_TEMPLATE)
     devData["category"] = DEVICE_CATEGORY.smart_switch
     devData["type"]  = DEVICE_TYPE.garage_door_opener
@@ -635,7 +636,7 @@ def generateGarageDoorOpenerTemplate_WULIAN():
     return devData
 
 # CURTAIN OPENER
-def generateCurtainOpenerTemplate_WULIAN():
+def generateCurtainOpenerTemplate_TUYA():
     devData = copy.deepcopy(BASE_TEMPLATE)
     devData["category"] = DEVICE_CATEGORY.smart_switch
     devData["type"]  = DEVICE_TYPE.curtain_opener
@@ -913,6 +914,29 @@ def generateBC1Template_EZVIZ():
     return devData
 
 class DeviceTemplates:
+    # 设备数据模版生成函数容器，按照设备类型保存
+    TYPES = {}
+
+    # 设备数据模版函数 注册器
+    @classmethod
+    def registerTemplatesFuncsByDeviceType(cls, deviceType):
+        def decorator(func):
+            cls.TYPES[deviceType] = func
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+            return wrapper
+        return decorator
+    
+    # 基于设备类型获取 设备数据模版
+    @classmethod
+    def fromType(cls, deviceType):
+        templateFunc = cls.TYPES.get(deviceType, None)
+        if templateFunc is None:
+            return None
+        return templateFunc()
+
+    # 下面的方法后面即将废弃
     # 获取红外入侵检测器数据模版
     PIR_WULIAN           = generatePIRTemplate_WULIAN()
     # 获取门窗磁感应器数据模版
@@ -937,9 +961,9 @@ class DeviceTemplates:
     # 获取场景开关数据模版
     SCENE_SWITCH_6_WULIAN    = generateSceneSwitchTemplate_WULIAN()
     # 获取车库门控制器数据模版
-    GARAGE_DOOR_OPENER_TUYA  = generateGarageDoorOpenerTemplate_WULIAN()
+    GARAGE_DOOR_OPENER_TUYA  = generateGarageDoorOpenerTemplate_TUYA()
     # 获取窗帘控制器数据模版
-    CURTAIN_TUYA = generateCurtainOpenerTemplate_WULIAN()
+    CURTAIN_TUYA = generateCurtainOpenerTemplate_TUYA()
     CAMERA_C3W_EZVIZ  = generateC3WTemplate_EZVIZ()
     CAMERA_C3A_EZVIZ  = generateC3ATemplate_EZVIZ()
     CAMERA_C3X_EZVIZ  = generateC3XTemplate_EZVIZ()
@@ -947,38 +971,96 @@ class DeviceTemplates:
     CAMERA_BC1_EZVIZ  = generateBC1Template_EZVIZ()
     CAMERA_W2H_EZVIZ  = None
 
-    # @classmethod
-    # def fromType(cls, deviceType):
-    #     if deviceType == DEVICE_TYPE.pir_detector:
-    #         return cls.PIR_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.CONTACTOR_WULIAN
-    #     elif deviceType == DEVICE_TYPE.smoke_detector:
-    #         return cls.SMOKER_WULIAN
-    #     elif deviceType == DEVICE_TYPE.water_leak_detector:
-    #         return cls.WATER_LEAKER_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.GAS_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.TEMP_HUMI_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.LIGHT_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.WALL_SWITCH_1_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.WALL_SWITCH_2_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.WALL_SWITCH_3_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.EMBEDDED_SWITCH_1_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.EMBEDDED_SWITCH_2_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.SCENE_SWITCH_6_WULIAN
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.GARAGE_DOOR_OPENER_TUYA
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.CAMERA_C3W_EZVIZ
-    #     elif deviceType == DEVICE_TYPE.contact_detector:
-    #         return cls.CAMERA_C3A_EZVIZ
-    #     return None
+# 获取红外入侵检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.pir_detector)
+def pir():
+    return generatePIRTemplate_WULIAN()
+
+# 获取门窗磁感应器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.contact_detector)
+def contact():
+    return generateContactorTemplate_WULIAN()
+
+# 获取水浸检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.water_leak_detector)
+def water():
+    return generateWaterLeakerTemplate_WULIAN()
+
+# 获取烟雾检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.smoke_detector)
+def smoke():
+    return generateSmokerTemplate_WULIAN()
+
+# 获取天然气检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.gas_detector)
+def gas():
+    return generateGASTemplate_WULIAN()
+
+# 获取温湿度检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.temp_humi_sensor)
+def temp_humi():
+    return generateTempHumiTemplate_WULIAN()
+
+# 获取光强检测器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.light_sensor)
+def light():
+    return generateLightTemplate_WULIAN()
+
+# 获取墙壁开关数据模版，1，2，3分别代表1联，2联，3联开关
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.wall_switch_1)
+def wall_sw_1():
+    return generateWallSwitchTemplate_WULIAN(1)
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.wall_switch_2)
+def wall_sw_2():
+    return generateWallSwitchTemplate_WULIAN(2)
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.wall_switch_3)
+def wall_sw_3():
+    return generateWallSwitchTemplate_WULIAN(3)
+
+# 获取零火开关数据模版，1，2分别代表1联，2联开关
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.embedded_switch_1)
+def embedded_switch_1():
+    return generateEmbeddedSwitchTemplate_WULIAN(1)
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.embedded_switch_2)
+def embedded_switch_2():
+    return generateEmbeddedSwitchTemplate_WULIAN(2)
+
+
+# 获取场景开关数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.scene_switch_6)
+def scene_switch_6():
+    return generateSceneSwitchTemplate_WULIAN()
+
+# 获取车库门控制器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.garage_door_opener)
+def garage_door_opener():
+    return generateGarageDoorOpenerTemplate_TUYA()
+
+# 获取窗帘控制器数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.curtain_opener)
+def curtain_opener():
+    return generateCurtainOpenerTemplate_TUYA()
+
+# 获取萤石摄像头数据模版
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_c3w)
+def camera_c3w():
+    return generateC3WTemplate_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_c3a)
+def camera_c3a():
+    return generateC3ATemplate_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_c3x)
+def camera_c3x():
+    return generateC3XTemplate_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_lc1c)
+def camera_lc1c():
+    return generateLC1CTemplate_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_bc1)
+def camera_bc1():
+    return generateBC1Template_EZVIZ()
