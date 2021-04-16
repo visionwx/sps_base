@@ -69,3 +69,26 @@ class TuyaAccountNotFoundException(Exception):
 # 设备数据模版未注册
 class DeviceTypeDataTemplateNotFoundException(Exception):
     pass
+
+# 设备已经存在
+class DeviceAlreadyExistException(Exception):
+    def __init__(self, userId, houseId, deviceId):
+        self.userId   = userId
+        self.houseId  = houseId
+        self.deviceId = deviceId
+
+# 设备厂商不支持
+class DeviceVendorNotSupportException(Exception):
+    def __init__(self, deviceVendor):
+        self.deviceVendor = deviceVendor
+
+# 设备已经归属其他人
+class DeviceBelongToOthersException(Exception):
+    def __init__(self, userId, houseId, deviceId):
+        self.userId   = userId
+        self.houseId  = houseId
+        self.deviceId = deviceId
+
+# 设备添加异常
+class DeviceAddFailedException(Exception):
+    pass

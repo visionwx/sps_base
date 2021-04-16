@@ -152,6 +152,23 @@ def publishWulianDeviceGetTopic(wulianUserId, wulianGwDeviceId):
         topicData
     )
 
+# 发布物联device delete指令消息
+def publishWulianDeviceDeleteTopic(wulianUserId, 
+    wulianGwDeviceId, wulianDeviceId, wulianDeviceType):
+    topicData = {
+        "command_type": WULIAN_DEVICE_CMD.DELETE_DEVICE,
+        "command_para": {
+            "wulian_user_id": wulianUserId,
+            "wulian_gw_device_id": wulianGwDeviceId,
+            "wulian_device_id": wulianDeviceId,
+			"wulian_device_type": wulianDeviceType
+        }
+    }
+    publishTopic(
+        DEVICE_TOPIC.WULIAN_EXECUTE, 
+        topicData
+    )
+
 # 发布场景相关事件
 def publishSceneTopic(topicId, userId, houseId, 
     sceneId, sceneData, 
