@@ -17,6 +17,7 @@ export GCP_PROJECT=my-first-action-project-96da6
 
 ## Change
 #### 2021-04-16 Update
+- 【新增】新增publishTuyaDeviceDeleteTopic
 - 【新增】新增publishWulianDeviceDeleteTopic，以及部分exceptions
 - 【优化】去掉DeviceDocument的 vendorPrefix参数
 - 【新增】新增exception，Document基类set方法增加merge参数

@@ -5,7 +5,7 @@ from sps_base.exceptions import EnvironmentValueNotFoundException
 from sps_base.utils.parameters import getParaFromEnvironment
 from sps_base.utils.logger import getLogger
 from sps_base.topics import DEVICE_TOPIC, VENDOR_MESSAGE_RECEIVE_TOPIC, SCENE_TOPIC
-from sps_base.devices import WULIAN_DEVICE_CMD, EXECUTE_DEVICE_TRIGGER
+from sps_base.devices import WULIAN_DEVICE_CMD, TUYA_DEVICE_CMD, EXECUTE_DEVICE_TRIGGER
 
 TAG = "PUBLISHER"
 
@@ -162,6 +162,22 @@ def publishWulianDeviceDeleteTopic(wulianUserId,
             "wulian_gw_device_id": wulianGwDeviceId,
             "wulian_device_id": wulianDeviceId,
 			"wulian_device_type": wulianDeviceType
+        }
+    }
+    publishTopic(
+        DEVICE_TOPIC.WULIAN_EXECUTE, 
+        topicData
+    )
+
+# 发布涂鸦device delete指令消息
+def publishTuyaDeviceDeleteTopic(userId, 
+    houseId, tuyaDeviceId):
+    topicData = {
+        "command_type": TUYA_DEVICE_CMD.DELETE,
+        "command_para": {
+            "user_id": userId,
+            "house_id": houseId,
+            "tuya_device_id": tuyaDeviceId,
         }
     }
     publishTopic(
