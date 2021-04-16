@@ -51,12 +51,10 @@ def parseCondition(condition):
 # 设备 文档类
 class DeviceDocument(Document):
     # 构造函数，重写
-    def __init__(self, userId, houseId, deviceId, 
-        deviceVendorPrefix):
+    def __init__(self, userId, houseId, deviceId):
         self.userId = userId
         self.houseId = houseId
         self.deviceId = deviceId
-        self.deviceVendorPrefix = deviceVendorPrefix
         self.REF = self.getDocumentRef()
         
     # 获取设备数据库引用
