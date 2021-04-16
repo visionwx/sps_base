@@ -55,3 +55,17 @@ class UserTokenNotProvideException(Exception):
 # token失效
 class UserTokenExpireException(Exception):
     pass
+
+# 用户没有萤石子账号
+class EzvizAccountNotFoundException(Exception):
+    pass
+# 用户没有物联子账号
+class WulianAccountNotFoundException(Exception):
+    pass
+# 用户没有涂鸦子账号
+class TuyaAccountNotFoundException(Exception):
+    pass
+
+# 设备数据模版未注册
+class DeviceTypeDataTemplateNotFoundException(Exception):
+    pass

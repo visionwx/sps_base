@@ -116,8 +116,8 @@ class Document(metaclass=abc.ABCMeta):
         return self.REF.create(data)
 
     # 创建或者覆盖文档
-    def set(self, data):
-        return self.REF.set(data)
+    def set(self, data, merge=True):
+        return self.REF.set(data, merge=merge)
 
     # 更新文档
     def update(self, data):
