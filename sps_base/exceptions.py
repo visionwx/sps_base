@@ -120,3 +120,26 @@ class DeviceBelongToOthersException(BaseException):
 class DeviceAddFailedException(BaseException):
     ID = 40016
     pass
+
+# 设备验证码错误异常
+class DeviceVerifyCodeIncorrectException(BaseException):
+    ID = 40017
+    pass
+
+# 物联接口调用异常
+class WulianAPICallException(BaseException):
+    ID = 40018
+    def __init__(self, errorMessage=None):
+        self.errorMessage = errorMessage
+
+# 涂鸦接口调用异常
+class TuyaAPICallException(BaseException):
+    ID = 40019
+    def __init__(self, errorMessage=None):
+        self.errorMessage = errorMessage
+
+# 萤石接口调用异常
+class EzvizAPICallException(BaseException):
+    ID = 40020
+    def __init__(self, errorMessage=None):
+        self.errorMessage = errorMessage
