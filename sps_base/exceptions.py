@@ -1,8 +1,6 @@
 class BaseException(Exception):
     # 异常id
     ID = None
-    def description(self):
-        return self.__class__.__name__
 
 # 用户不存在
 class UserNotExistException(BaseException):
@@ -10,7 +8,7 @@ class UserNotExistException(BaseException):
     def __init__(self, userId):
         self.userId = userId
     def __str__(self):
-        print("userId:" + self.userId  + " not exist")
+        return ("userId=" + self.userId)
 
 # 用户房子不存在
 class HouseNotExistException(BaseException):
@@ -19,9 +17,8 @@ class HouseNotExistException(BaseException):
         self.userId = userId
         self.houseId = houseId
     def __str__(self):
-        return ("userId:" + self.userId  
-        + ", houseId:" + self.houseId
-        + " not exist")
+        return ("userId=" + self.userId + 
+            ", houseId=" + self.houseId)
 
 # 用户房子设备不存在
 class DeviceNotExistException(BaseException):
@@ -31,10 +28,9 @@ class DeviceNotExistException(BaseException):
         self.houseId = houseId
         self.deviceId = deviceId
     def __str__(self):
-        print("userId:" + self.userId  
-        + ", houseId:" + self.houseId
-        + ", deviceId:" + self.deviceId  
-        + " not exist")
+        return ("userId=" + self.userId  
+        + ", houseId=" + self.houseId
+        + ", deviceId=" + self.deviceId)
 
 # 参数未提供
 class ParametersNotProvideException(BaseException):
@@ -42,7 +38,7 @@ class ParametersNotProvideException(BaseException):
     def __init__(self, fieldName):
         self.fieldName = fieldName
     def __str__(self):
-        print("parameter:" + self.fieldName  + " not found")
+        return ("parameterName=" + self.fieldName)
 
 # 环境变量未提供
 class EnvironmentValueNotFoundException(BaseException):
@@ -50,7 +46,7 @@ class EnvironmentValueNotFoundException(BaseException):
     def __init__(self, envField):
         self.envField = envField
     def __str__(self):
-        print("environment value:" + self.envField  + " not found")
+        print("environmentName=" + self.envField)
 
 # 物联消息参数缺失
 class WulianMessageParameterMissingException(BaseException):
@@ -58,7 +54,7 @@ class WulianMessageParameterMissingException(BaseException):
     def __init__(self, messageField):
         self.messageField = messageField
     def __str__(self):
-        print("Wulian message parameter:" + self.messageField  + " missing")
+        print("parameterName=" + self.messageField)
 
 # token未提供
 class UserTokenNotProvideException(BaseException):
@@ -95,12 +91,18 @@ class DeviceAlreadyExistException(BaseException):
         self.userId   = userId
         self.houseId  = houseId
         self.deviceId = deviceId
+    def __str__(self):
+        return ("userId=" + self.userId  
+        + ", houseId=" + self.houseId
+        + ", deviceId=" + self.deviceId)
 
 # 设备厂商不支持
 class DeviceVendorNotSupportException(BaseException):
     ID = 40014
     def __init__(self, deviceVendor):
         self.deviceVendor = deviceVendor
+    def __str__(self):
+        return ("deviceVendor=" + self.deviceVendor)
 
 # 设备已经归属其他人
 class DeviceBelongToOthersException(BaseException):
@@ -109,6 +111,10 @@ class DeviceBelongToOthersException(BaseException):
         self.userId   = userId
         self.houseId  = houseId
         self.deviceId = deviceId
+    def __str__(self):
+        return ("userId=" + self.userId  
+        + ", houseId=" + self.houseId
+        + ", deviceId=" + self.deviceId)
 
 # 设备添加异常
 class DeviceAddFailedException(BaseException):
