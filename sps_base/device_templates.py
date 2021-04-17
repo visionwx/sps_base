@@ -913,6 +913,58 @@ def generateBC1Template_EZVIZ():
     devData = addCloudStorageTraits(devData)
     return devData
 
+# WULIAN GW01/02
+def generateGateway01Template_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_gateway
+    devData["type"]  = DEVICE_TYPE.gateway_01
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.gateway_01)
+    devData["googleType"] = None
+    devData["name"] = {
+        "defaultName": ["Wulian Gateway [LAN,AP]"],
+        "name": "Wulian Gateway [LAN,AP]",
+        "nicknames": ["Wulian Gateway [LAN,AP]"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZGWMDPB-G110-05",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = []
+    devData["states"] = {
+        "online": False,
+    }
+    devData["attributes"] = {}
+    return devData
+
+# WULIAN GW01/02
+def generateGateway02Template_WULIAN():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_gateway
+    devData["type"]  = DEVICE_TYPE.gateway_02
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.gateway_02)
+    devData["googleType"] = None
+    devData["name"] = {
+        "defaultName": ["Wulian Gateway [LAN]"],
+        "name": "Wulian Gateway [LAN]",
+        "nicknames": ["Wulian Gateway [LAN]"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.WULIAN,
+        "productPicture": None,
+        "model": "WL-ZGWMDPB-G100-0",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = []
+    devData["states"] = {
+        "online": False,
+    }
+    devData["attributes"] = {}
+    return devData
+
 class DeviceTemplates:
     # 设备数据模版生成函数容器，按照设备类型保存
     TYPES = {}
@@ -937,6 +989,9 @@ class DeviceTemplates:
         return templateFunc()
 
     # 下面的方法后面即将废弃
+    # 物联网关gw01
+    GATEWAY01_WULIAN = generateGateway01Template_WULIAN()
+    GATEWAY02_WULIAN = generateGateway02Template_WULIAN()
     # 获取红外入侵检测器数据模版
     PIR_WULIAN           = generatePIRTemplate_WULIAN()
     # 获取门窗磁感应器数据模版
@@ -1064,3 +1119,11 @@ def camera_lc1c():
 @DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_bc1)
 def camera_bc1():
     return generateBC1Template_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.gateway_01)
+def gateway_01():
+    return generateGateway01Template_WULIAN()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.gateway_02)
+def gateway_02():
+    return generateGateway02Template_WULIAN()
