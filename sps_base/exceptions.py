@@ -1,22 +1,31 @@
+class BaseException(Exception):
+    # 异常id
+    ID = None
+    def description(self):
+        return self.__class__.__name__
+
 # 用户不存在
-class UserNotExistException(Exception):
+class UserNotExistException(BaseException):
+    ID = 40001
     def __init__(self, userId):
         self.userId = userId
     def __str__(self):
         print("userId:" + self.userId  + " not exist")
 
 # 用户房子不存在
-class HouseNotExistException(Exception):
+class HouseNotExistException(BaseException):
+    ID = 40002
     def __init__(self, userId, houseId):
         self.userId = userId
         self.houseId = houseId
     def __str__(self):
-        print("userId:" + self.userId  
+        return ("userId:" + self.userId  
         + ", houseId:" + self.houseId
         + " not exist")
 
 # 用户房子设备不存在
-class DeviceNotExistException(Exception):
+class DeviceNotExistException(BaseException):
+    ID = 40003
     def __init__(self, userId, houseId, deviceId):
         self.userId = userId
         self.houseId = houseId
@@ -28,67 +37,80 @@ class DeviceNotExistException(Exception):
         + " not exist")
 
 # 参数未提供
-class ParametersNotProvideException(Exception):
+class ParametersNotProvideException(BaseException):
+    ID = 40004
     def __init__(self, fieldName):
         self.fieldName = fieldName
     def __str__(self):
         print("parameter:" + self.fieldName  + " not found")
 
 # 环境变量未提供
-class EnvironmentValueNotFoundException(Exception):
+class EnvironmentValueNotFoundException(BaseException):
+    ID = 40005
     def __init__(self, envField):
         self.envField = envField
     def __str__(self):
         print("environment value:" + self.envField  + " not found")
 
 # 物联消息参数缺失
-class WulianMessageParameterMissingException(Exception):
+class WulianMessageParameterMissingException(BaseException):
+    ID = 40006
     def __init__(self, messageField):
         self.messageField = messageField
     def __str__(self):
         print("Wulian message parameter:" + self.messageField  + " missing")
 
 # token未提供
-class UserTokenNotProvideException(Exception):
+class UserTokenNotProvideException(BaseException):
+    ID = 40007
     pass
 
 # token失效
-class UserTokenExpireException(Exception):
+class UserTokenExpireException(BaseException):
+    ID = 40008
     pass
 
 # 用户没有萤石子账号
-class EzvizAccountNotFoundException(Exception):
+class EzvizAccountNotFoundException(BaseException):
+    ID = 40009
     pass
 # 用户没有物联子账号
-class WulianAccountNotFoundException(Exception):
+class WulianAccountNotFoundException(BaseException):
+    ID = 40010
     pass
 # 用户没有涂鸦子账号
-class TuyaAccountNotFoundException(Exception):
+class TuyaAccountNotFoundException(BaseException):
+    ID = 40011
     pass
 
 # 设备数据模版未注册
-class DeviceTypeDataTemplateNotFoundException(Exception):
+class DeviceTypeDataTemplateNotFoundException(BaseException):
+    ID = 40012
     pass
 
 # 设备已经存在
-class DeviceAlreadyExistException(Exception):
+class DeviceAlreadyExistException(BaseException):
+    ID = 40013
     def __init__(self, userId, houseId, deviceId):
         self.userId   = userId
         self.houseId  = houseId
         self.deviceId = deviceId
 
 # 设备厂商不支持
-class DeviceVendorNotSupportException(Exception):
+class DeviceVendorNotSupportException(BaseException):
+    ID = 40014
     def __init__(self, deviceVendor):
         self.deviceVendor = deviceVendor
 
 # 设备已经归属其他人
-class DeviceBelongToOthersException(Exception):
+class DeviceBelongToOthersException(BaseException):
+    ID = 40015
     def __init__(self, userId, houseId, deviceId):
         self.userId   = userId
         self.houseId  = houseId
         self.deviceId = deviceId
 
 # 设备添加异常
-class DeviceAddFailedException(Exception):
+class DeviceAddFailedException(BaseException):
+    ID = 40016
     pass

@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-17 Update
+- 【优化】新增BaseException，所有exception 增加id字段
+
 #### 2021-04-16 Update
 - 【新增】新增publishTuyaDeviceDeleteTopic
 - 【新增】新增publishWulianDeviceDeleteTopic，以及部分exceptions
