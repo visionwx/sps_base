@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-21 Update
+- 【修复】DEVICE_TYPE.camera_c3x内容乱码问题解决
+
 #### 2021-04-17 Update
 - 【新增】新增厂商接口异常 以及 设备验证码错误异常
 - 【新增】增加物联网关数据模版
