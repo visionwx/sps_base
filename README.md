@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-23 Update
+- 【新增】DEVICE_TYPE toTypeId 增加新的摄像头id
+
 #### 2021-04-21 Update
 - 【修复】DEVICE_TYPE.camera_c3x内容乱码问题解决
 
