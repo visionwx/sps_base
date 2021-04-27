@@ -18,6 +18,7 @@ export GCP_PROJECT=my-first-action-project-96da6
 ## Change
 #### 2021-04-27 Update
 - 【新增】CAMERA_W2H Template
+- 【新增】发布收到涂鸦/萤石设备消息的主题函数
 
 #### 2021-04-23 Update
 - 【新增】DEVICE_TYPE toTypeId 增加新的摄像头id

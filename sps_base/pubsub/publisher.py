@@ -124,6 +124,20 @@ def publishWulianMessageReceiveTopic(topicData):
         topicData
     )
 
+# 发布收到 涂鸦设备消息
+def publishTuyaMessageReceiveTopic(topicData):
+    publishTopic(
+        VENDOR_MESSAGE_RECEIVE_TOPIC.TUYA,
+        topicData
+    )
+
+# 发布收到 萤石设备消息
+def publishEzvizMessageReceiveTopic(topicData):
+    publishTopic(
+        VENDOR_MESSAGE_RECEIVE_TOPIC.EZVIZ,
+        topicData
+    )
+
 # 发布物联gw同步消息
 def publishWulianDeviceSyncTopic(wulianUserId, wulianGwDeviceId):
     topicData = {
