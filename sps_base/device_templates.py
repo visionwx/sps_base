@@ -913,6 +913,32 @@ def generateBC1Template_EZVIZ():
     devData = addCloudStorageTraits(devData)
     return devData
 
+# EZVIZ Camera base station
+def generateCameraGatewayW2HTemplate_EZVIZ():
+    devData = copy.deepcopy(BASE_TEMPLATE)
+    devData["category"] = DEVICE_CATEGORY.smart_gateway
+    devData["type"]  = DEVICE_TYPE.camera_w2h
+    devData["icons"] = generateIconsUrlConfig(DEVICE_TYPE.camera_w2h)
+    devData["googleType"] = None
+    devData["name"] = {
+        "defaultName": ["Camera Base Station"],
+        "name": "Camera Base Station",
+        "nicknames": ["Camera Base Station"]
+    }
+    devData["deviceInfo"] = {
+        "manufacturer": DEVICE_VENDOR.EZVIZ,
+        "productPicture": None,
+        "model": "CS-BC1",
+        "hwVersion": None,
+        "swVersion": None
+    }
+    devData["traits"] = []
+    devData["states"] = {
+        "online": False,
+    }
+    devData["attributes"] = {}
+    return devData
+
 # WULIAN GW01/02
 def generateGateway01Template_WULIAN():
     devData = copy.deepcopy(BASE_TEMPLATE)
@@ -1024,7 +1050,7 @@ class DeviceTemplates:
     CAMERA_C3X_EZVIZ  = generateC3XTemplate_EZVIZ()
     CAMERA_LC1C_EZVIZ = generateLC1CTemplate_EZVIZ()
     CAMERA_BC1_EZVIZ  = generateBC1Template_EZVIZ()
-    CAMERA_W2H_EZVIZ  = None
+    CAMERA_W2H_EZVIZ  = generateCameraGatewayW2HTemplate_EZVIZ()
 
 # 获取红外入侵检测器数据模版
 @DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.pir_detector)
@@ -1119,6 +1145,10 @@ def camera_lc1c():
 @DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_bc1)
 def camera_bc1():
     return generateBC1Template_EZVIZ()
+
+@DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.camera_w2h)
+def camera_w2h():
+    return generateCameraGatewayW2HTemplate_EZVIZ()
 
 @DeviceTemplates.registerTemplatesFuncsByDeviceType(DEVICE_TYPE.gateway_01)
 def gateway_01():

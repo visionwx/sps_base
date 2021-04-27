@@ -48,7 +48,7 @@ class DEVICE_TYPE:
 	camera_c3a = "devices.types.CAMERA_C3A"
 	camera_lc1c = "devices.types.CAMERA_LC1C"
 	camera_bc1 = "devices.types.CAMERA_BC1"
-	camera_w2h = "devices.types.CAMERA_w2h"
+	camera_w2h = "devices.types.CAMERA_W2H"
 	camera_c3x = "devices.types.CAMERA_C3X"
 	# 网关，对应物联
 	gateway_01 = "devices.types.GATEWAY_01"
@@ -77,7 +77,7 @@ class DEVICE_TYPE:
 		camera_lc1c: "12",
 		camera_bc1: "12",
 		camera_c3x: "12",
-		camera_w2h: "12",
+		camera_w2h: "01",
 		temp_humi_sensor: "14",
 		light_sensor: "15",
 		sound_warner: "16",
