@@ -54,4 +54,4 @@ class VENDOR_MESSAGE_RECEIVE_TOPIC:
     WULIAN_ALARM = "wulian-alarm-topic-receive"
     WULIAN = "wulian-message-receive"
     TUYA   = "tuya-message-receive"
-    EZVIZ  = "ezivz-message-receive"
+    EZVIZ  = "ezviz-message-receive"
