@@ -848,6 +848,9 @@ def generateCameraTemplate_EZVIZ(deviceType, deviceName):
     devData["traits"] = []
     devData["states"] = {
         "online": False,
+        "currentSmartDetectStates": {
+            "enable": False,
+        }
     }
     devData["attributes"] = {}
     return devData
