@@ -712,7 +712,7 @@ def addSmartDetectTraits(deviceData, supportHuman=False, supportCar=False):
             {"name": "only motion", "value":3,},
             {"name": "only human", "value":1,},
             {"name": "only car", "value":2,},
-            {"name": "human and car", "value":0,},
+            {"name": "human or car", "value":0,},
         ]
     return deviceData
 

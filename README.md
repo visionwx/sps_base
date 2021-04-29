@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-04-29 Update
+- 【新增】ezviz camera设备数据模版，状态初始化
+
 #### 2021-04-28 Update
 - 【新增】ezviz camera设备数据模版，状态初始化
 
