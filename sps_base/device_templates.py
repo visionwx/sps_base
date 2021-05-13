@@ -751,7 +751,7 @@ def addNightVisionTraits(deviceData, supportSpotLight=False):
     return deviceData
 
 # 增加 LiveVideo 特性
-def addLiveVideoTraits(deviceData):
+def addLiveVideoTraits(deviceData, videoLevels=[1,2,3]):
     # 增加traits
     deviceData["traits"].append("action.devices.traits.LiveVideo")
     # 初始化状态
@@ -759,6 +759,23 @@ def addLiveVideoTraits(deviceData):
         "encryptVideo": True, # 是否加密视频
         "flipImage": False,    # 是否翻转画面
         "enableMicro": True, # 是否开启麦克风
+    }
+    # 初始化属性值
+    supportVideoLevels = []
+    for (_videoDesp,_videoLevel) in zip(
+        ["Low quality",
+        "Medium quality",
+        "High quality",
+        "Super high quality"], 
+        [0,1,2,3]
+    ):
+        if _videoLevel in videoLevels:
+            supportVideoLevels.append({
+                "name": _videoDesp,
+                "value": _videoLevel
+            })
+    deviceData["attributes"]["liveVideoSupported"] = {
+        "supportVideoLevels": supportVideoLevels,
     }
     return deviceData
 
@@ -786,7 +803,7 @@ def addSDStorageTraits(deviceData):
     deviceData["traits"].append("action.devices.traits.SDStorage")
     # 初始化状态
     deviceData["states"]["currentSDStorageStates"] = {
-        "status": -1, # sd卡工作状态， -1表示没有插入sd卡
+        "status": [-1], # sd卡工作状态， -1表示没有插入sd卡
     }
     return deviceData
 
@@ -796,7 +813,7 @@ def addCloudStorageTraits(deviceData):
     deviceData["traits"].append("action.devices.traits.CloudStorage")
     # 初始化状态
     deviceData["states"]["currentCloudStorageStates"] = {
-        "status": -1, # 云存储工作状态， -1表示没有购买套餐
+        "enable": False, # 云存储工作状态， -1表示没有购买套餐
     }
     # 初始化属性值
     # "name": "套餐名称", "expireDate": "套餐到期日期"
@@ -809,6 +826,7 @@ def addFloodLightTraits(deviceData):
     deviceData["traits"].append("action.devices.traits.FloodLight")
     # 初始化状态
     deviceData["states"]["currentFloodLightStates"] = {
+        "isOn": False,
         "brightness": 30, # 当前亮度
     }
     # 初始化属性值
@@ -886,7 +904,7 @@ def generateC3XTemplate_EZVIZ():
     # 增加特性
     devData = addSmartDetectTraits(devData, supportHuman=True, supportCar=True)
     devData = addNightVisionTraits(devData, supportSpotLight=True)
-    devData = addLiveVideoTraits(devData)
+    devData = addLiveVideoTraits(devData, videoLevels=[2,3])
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
     return devData
