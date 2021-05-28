@@ -751,7 +751,9 @@ def addNightVisionTraits(deviceData, supportSpotLight=False):
     return deviceData
 
 # 增加 LiveVideo 特性
-def addLiveVideoTraits(deviceData, videoLevels=[1,2,3]):
+def addLiveVideoTraits(deviceData, videoLevels=[1,2,3], 
+    supportSpotLight=False, supportEnhancePictureQuality=False,
+    supportAdvanceImageSetting=False):
     # 增加traits
     deviceData["traits"].append("action.devices.traits.LiveVideo")
     # 初始化状态
@@ -759,6 +761,16 @@ def addLiveVideoTraits(deviceData, videoLevels=[1,2,3]):
         "encryptVideo": True, # 是否加密视频
         "flipImage": False,    # 是否翻转画面
         "enableMicro": True, # 是否开启麦克风
+
+        "spotLightMode": 2,
+        "spotLightBrightness": 50,
+        "irLightMode": 0,
+        "irLightSensitivity": 2,
+
+        "enhancePictureQuality": False,
+        "enableBacklightMode": False,
+        "backlightPosition": 1,
+        "imageStyle": 1,
     }
     # 初始化属性值
     supportVideoLevels = []
@@ -776,7 +788,29 @@ def addLiveVideoTraits(deviceData, videoLevels=[1,2,3]):
             })
     deviceData["attributes"]["liveVideoSupported"] = {
         "supportVideoLevels": supportVideoLevels,
+        "supportIRLightMode": [
+            {"name": "Smart Mode(Recommended)", "value": 0, "description": "Auto-Switch Day/Night Mode."},
+            {"name": "Enforcing Day Mode", "value": 1, "description": "IR-Light stays off."},
+            {"name": "Enforcing Night Mode", "value": 2, "description": "IR-Light stays on."},
+        ],
+        "supportIRLightSensitivity": [
+            {"name": "Low", "value": 1, "description": "Low Sensitivity"},
+            {"name": "Medium", "value": 2, "description": "Medium Sensitivity"},
+            {"name": "High", "value": 3, "description": "High Sensitivity"},
+        ],
+        supportAdvanceImageSetting: supportAdvanceImageSetting,
+        supportEnhancePictureQuality: supportEnhancePictureQuality
     }
+    if supportSpotLight:
+        deviceData["attributes"]["liveVideoSupported"]["supportSpotLight"] = True
+        deviceData["attributes"]["liveVideoSupported"]["supportSpotLightMode"] = [
+            {"name": "Smart Mode(Recommended)", "value": 2, "description": "Black/White mode by default, Switch to color mode when motion detected."},
+            {"name": "Black/White Mode", "value": 0, "description": "IR Light, of high invisibility and the image is black and white."},
+            {"name": "Color Mode", "value": 1, "description": "Warm light, can be used as night light and the image is colorful."},
+        ]
+        deviceData["attributes"]["liveVideoSupported"]["supportSpotLightBrightnessRange"] = [0, 100]
+        
+    
     return deviceData
 
 # 增加 Battery 特性
@@ -879,8 +913,8 @@ def generateC3WTemplate_EZVIZ():
         DEVICE_TYPE.camera_c3w, "C3W Camera")
     # 增加特性
     devData = addSmartDetectTraits(devData)
-    devData = addNightVisionTraits(devData, supportSpotLight=True)
-    devData = addLiveVideoTraits(devData)
+    # devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData, supportSpotLight=True)
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
     return devData
@@ -891,7 +925,7 @@ def generateC3ATemplate_EZVIZ():
         DEVICE_TYPE.camera_c3a, "C3A Camera")
     # 增加特性
     devData = addSmartDetectTraits(devData)
-    devData = addNightVisionTraits(devData)
+    # devData = addNightVisionTraits(devData)
     devData = addLiveVideoTraits(devData)
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
@@ -903,8 +937,8 @@ def generateC3XTemplate_EZVIZ():
         DEVICE_TYPE.camera_c3x, "C3X Camera")
     # 增加特性
     devData = addSmartDetectTraits(devData, supportHuman=True, supportCar=True)
-    devData = addNightVisionTraits(devData, supportSpotLight=True)
-    devData = addLiveVideoTraits(devData, videoLevels=[2,3])
+    # devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData, videoLevels=[2,3], supportAdvanceImageSetting=True, supportEnhancePictureQuality=True)
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
     return devData
@@ -915,7 +949,7 @@ def generateLC1CTemplate_EZVIZ():
         DEVICE_TYPE.camera_lc1c, "LC1C Camera")
     # 增加特性
     devData = addSmartDetectTraits(devData)
-    devData = addNightVisionTraits(devData, supportSpotLight=False)
+    # devData = addNightVisionTraits(devData, supportSpotLight=False)
     devData = addLiveVideoTraits(devData)
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
@@ -928,8 +962,8 @@ def generateBC1Template_EZVIZ():
         DEVICE_TYPE.camera_bc1, "BC1 Camera")
     # 增加特性
     devData = addSmartDetectTraits(devData, supportHuman=True)
-    devData = addNightVisionTraits(devData, supportSpotLight=True)
-    devData = addLiveVideoTraits(devData)
+    # devData = addNightVisionTraits(devData, supportSpotLight=True)
+    devData = addLiveVideoTraits(devData, supportSpotLight=True, supportAdvanceImageSetting=True)
     devData = addSDStorageTraits(devData)
     devData = addCloudStorageTraits(devData)
     return devData

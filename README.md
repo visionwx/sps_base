@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-05-28 Update
+- 【新增】ezviz摄像头设备数据模版 nightVisionMode迁移到liveVideo, liveVideo能力更新
+
 #### 2021-05-13 Update
 - 【新增】ezviz摄像头设备数据模版 sdStorage.status改成列表 liveVideo增加分辨率支持
 
