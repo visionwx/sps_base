@@ -798,8 +798,8 @@ def addLiveVideoTraits(deviceData, videoLevels=[1,2,3],
             {"name": "Medium", "value": 2, "description": "Medium Sensitivity"},
             {"name": "High", "value": 3, "description": "High Sensitivity"},
         ],
-        supportAdvanceImageSetting: supportAdvanceImageSetting,
-        supportEnhancePictureQuality: supportEnhancePictureQuality
+        "supportAdvanceImageSetting": supportAdvanceImageSetting,
+        "supportEnhancePictureQuality": supportEnhancePictureQuality
     }
     if supportSpotLight:
         deviceData["attributes"]["liveVideoSupported"]["supportSpotLight"] = True
