@@ -7,7 +7,7 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/samdychen/sps_base.git
+pip3 install git+https://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@github.com/visionwx/sps_base.git
 ```
 
 ## Test
@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-05-28 Update
+- 【修复】pubsub.publisher.publishTuyaDeviceDeleteTopic 发布topic名称错误bug修复
+
 #### 2021-05-28 Update
 - 【新增】ezviz摄像头设备数据模版 nightVisionMode迁移到liveVideo, liveVideo能力更新
 
