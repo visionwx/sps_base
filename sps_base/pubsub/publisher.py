@@ -195,7 +195,7 @@ def publishTuyaDeviceDeleteTopic(userId,
         }
     }
     publishTopic(
-        DEVICE_TOPIC.WULIAN_EXECUTE, 
+        DEVICE_TOPIC.TUYA_EXECUTE, 
         topicData
     )
 
