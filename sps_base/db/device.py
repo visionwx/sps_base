@@ -147,6 +147,13 @@ class DeviceStateEventSubcriberCollection(Collection):
     # 集合名称
     NAME = COLLECTIONS.deviceStateEventSubcriber
 
+# 支持的设备类型
+class SupportDevicesCollection(Collection):
+    NAME = COLLECTIONS.supportDevices
+
+# 支持的设备类型的数据模版
+class SupportDeviceTemplatesCollection(Collection):
+    NAME = COLLECTIONS.supportDeviceTemplates
 
 # 即将废弃
 class Device:
