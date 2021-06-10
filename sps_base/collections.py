@@ -6,6 +6,7 @@ class COLLECTIONS:
 	deviceStateEventSubcriber = "deviceStateEventSubcriber"
 	emailCodes = "emailCodes"
 	supportDevices = "supportDevices"
+	supportDeviceTemplates = "supportDeviceTemplates"
 	deviceDataModel = "deviceDataModel"
 	supportDeviceStateEvents = "supportDeviceStateEvents"
 	supportDeviceStateCommands = "supportDeviceStateCommands"
