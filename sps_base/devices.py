@@ -1,15 +1,17 @@
 # 所有设备类别
 class DEVICE_CATEGORY:
-    # 环境检测器
-    environment_sensor = "devices.category.ENVIRONMENT_SENSOR"
-    # 安放探测器
-    security_detector  = "devices.category.SECURITY_DETECTOR"
-    # 智能网关
-    smart_gateway      = "devices.category.SMART_GATEWAY"
-    # 智能开关
-    smart_switch       = "devices.category.SMART_SWITCH"
-    # 智能摄像头
-    smart_camera       = "devices.category.SMART_CAMERA"
+	# 环境检测器
+	environment_sensor = "devices.category.ENVIRONMENT_SENSOR"
+	# 安放探测器
+	security_detector  = "devices.category.SECURITY_DETECTOR"
+	# 智能网关
+	smart_gateway      = "devices.category.SMART_GATEWAY"
+	# 智能开关
+	smart_switch       = "devices.category.SMART_SWITCH"
+	# 智能摄像头
+	smart_camera       = "devices.category.SMART_CAMERA"
+	# 智能门锁
+	smart_locker       = "devices.category.SMART_LOCKER"
 
 # 所有设备类型
 class DEVICE_TYPE:
@@ -55,6 +57,8 @@ class DEVICE_TYPE:
 	gateway_02 = "devices.types.GATEWAY_02"
 	# 窗帘控制器
 	curtain_opener = "devices.types.CURTAIN_OPENER"
+	# 智能门锁
+	door_locker    = "devices.types.DOOR_LOCKER_E202"
 
 	# mapping to iconTypeId
 	toTypeId = {
@@ -81,7 +85,8 @@ class DEVICE_TYPE:
 		temp_humi_sensor: "14",
 		light_sensor: "15",
 		sound_warner: "16",
-		curtain_opener: "17"
+		curtain_opener: "17",
+		door_locker: "18"
 	}
 
 # 设备厂商 代码

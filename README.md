@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-06-10 Update
+- 【新增】新增 smart_locker大类和设备类型
+
 #### 2021-05-28 Update
 - 【修复】pubsub.publisher.publishTuyaDeviceDeleteTopic 发布topic名称错误bug修复
 
