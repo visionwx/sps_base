@@ -155,6 +155,13 @@ class SupportDevicesCollection(Collection):
 class SupportDeviceTemplatesCollection(Collection):
     NAME = COLLECTIONS.supportDeviceTemplates
 
+# 支持的设备类型的数据模版
+class SupportDeviceTemplatesDocument(Document):
+    # 重写集合名称
+    NAME = COLLECTIONS.supportDeviceTemplates
+
+
+
 # 即将废弃
 class Device:
     # init firestore object
