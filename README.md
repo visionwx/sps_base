@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-06-11 Update
+- 【新增】新增 supportDeviceTemplatesDocument
+
 #### 2021-06-10 Update
 - 【新增】新增 smart_locker大类和设备类型
 - 【新增】新增 supportDevicesCollection和supportDeviceTemplatesCollection
