@@ -59,6 +59,10 @@ class DEVICE_TYPE:
 	curtain_opener = "devices.types.CURTAIN_OPENER"
 	# 智能门锁
 	door_locker    = "devices.types.DOOR_LOCKER_E202"
+	# 墙壁开关
+	wall_outlet_1 = "devices.types.WALL_OUTLET_1"
+	wall_outlet_2 = "devices.types.WALL_OUTLET_2"
+	wall_outlet_3 = "devices.types.WALL_OUTLET_3"
 
 	# mapping to iconTypeId
 	toTypeId = {
@@ -86,7 +90,10 @@ class DEVICE_TYPE:
 		light_sensor: "15",
 		sound_warner: "16",
 		curtain_opener: "17",
-		door_locker: "18"
+		door_locker: "18",
+		wall_outlet_1: "08",
+		wall_outlet_2: "08",
+		wall_outlet_3: "08"
 	}
 
 # 设备厂商 代码
