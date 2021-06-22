@@ -1,4 +1,4 @@
-from sps_base.devices import DEVICE_ALARM
+from sps_base.devices import DEVICE_ALARM,DEVICE_TYPE
 
 # 物联mqtt订阅消息主题类型
 class WULIAN_MQTT_SUBSCRIBE_TOPIC:
@@ -68,20 +68,23 @@ WULIAN_GW_TYPE = {
 
 # SPS设备类型 到 物联设备类型代码的 mapping
 WULIAN_DEVICE_TYPE = {
-	"devices.types.GAS_DETECTOR": "09",
-	"devices.types.PIR_DETECTOR": "02",
-	"devices.types.CONTACT_DETECTOR": "03",
-	"devices.types.WATER_LEAK_DETECTOR": "06",
-	"devices.types.SMOKE_DETECTOR": "43",
-	"devices.types.SOUND_WARNER": "01",
-	"devices.types.TEMP_HUMI_SENSOR": "17",
-	"devices.types.LIGHT_SENSOR": "19",
-	"devices.types.SCENE_SWITCH_6": "37",
-	"devices.types.EMBEDDED_SWITCH_1": "Aj",
-	"devices.types.EMBEDDED_SWITCH_2": "At",
-	"devices.types.WALL_SWITCH_1": "61",
-	"devices.types.WALL_SWITCH_2": "62",
-	"devices.types.WALL_SWITCH_3": "63"
+	DEVICE_TYPE.gas_detector: "09",
+	DEVICE_TYPE.pir_detector: "02",
+	DEVICE_TYPE.contact_detector: "03",
+	DEVICE_TYPE.water_leak_detector: "06",
+	DEVICE_TYPE.smoke_detector: "43",
+	DEVICE_TYPE.sound_warner: "01",
+	DEVICE_TYPE.temp_humi_sensor: "17",
+	DEVICE_TYPE.light_sensor: "19",
+	DEVICE_TYPE.scene_switch_6: "37",
+	DEVICE_TYPE.embedded_switch_1: "Aj",
+	DEVICE_TYPE.embedded_switch_2: "At",
+	DEVICE_TYPE.wall_switch_1: "61",
+	DEVICE_TYPE.wall_switch_2: "62",
+	DEVICE_TYPE.wall_switch_3: "63",
+	DEVICE_TYPE.wall_outlet_1: "Dy",
+	DEVICE_TYPE.wall_outlet_2: "Dy",
+	DEVICE_TYPE.wall_outlet_3: "Dy",
 }
 
 class WULIAN_RECOVER_STATE:
