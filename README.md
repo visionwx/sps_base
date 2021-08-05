@@ -16,6 +16,9 @@ export GCP_PROJECT=my-first-action-project-96da6
 ```
 
 ## Change
+#### 2021-08-05 Update
+- 【修复】修复场景topic发布bug
+
 #### 2021-06-22 Update
 - 【新增】新增 物联wall_outlet和sound_warner设备类型
 

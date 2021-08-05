@@ -217,7 +217,7 @@ def publishSceneReviewTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.REVIEW
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
 
@@ -226,7 +226,7 @@ def publishSceneChangeTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.CHANGE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
 
@@ -234,7 +234,7 @@ def publishSceneCreateTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.CREATE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
     # 同时发布change事件
@@ -246,7 +246,7 @@ def publishSceneUpdateTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.UPDATE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
     # 同时发布change事件
@@ -258,7 +258,7 @@ def publishSceneDeleteTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.DELETE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
     # 同时发布change事件
@@ -270,7 +270,7 @@ def publishSceneEnableTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.ENABLE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
 
@@ -278,6 +278,6 @@ def publishSceneDisableTopic(userId, houseId,
     sceneId, sceneData, 
     trigger=None, triggerData=None):
     topicId = SCENE_TOPIC.DISABLE
-    publishSceneTopic(userId, houseId, 
+    publishSceneTopic(topicId, userId, houseId, 
         sceneId, sceneData, 
         trigger, triggerData)
