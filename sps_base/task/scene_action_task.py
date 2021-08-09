@@ -41,7 +41,7 @@ class HttpTask:
         inSeconds,
         taskQueue,
         taskEndpoint,
-        taskServiceAccount,
+        taskServiceAccount=None,
         projectId=None,
         projectLocation=None
     ):
@@ -155,7 +155,9 @@ class SceneActionTask(HttpTask):
                 'SCENE_ACTION_TASK_ENDPOINT')
         if taskServiceAccount is None:
             taskServiceAccount = getParaFromEnvironment(
-                'SCENE_ACTION_TASK_SERVICE_ACCOUNT')
+                'SCENE_ACTION_TASK_SERVICE_ACCOUNT',
+                raiseExceptionIfNone=False
+            )
         super().__init__(
             taskPayload=self.taskPayload,
             inSeconds=inSeconds,
