@@ -13,9 +13,16 @@ pip3 install git+https://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@github.com/vis
 ## Test
 ```
 export GCP_PROJECT=my-first-action-project-96da6
+export GCP_LOCATION=us-central1
+export SCENE_ACTION_TASK_QUEUE=scene-actions
+export SCENE_ACTION_TASK_ENDPOINT=https://scene-kjhf45fuxq-uc.a.run.app/v1/execute-scene-action
+export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96da6.iam.gserviceaccount.com"
 ```
 
 ## Change
+#### 2021-08-09 Update
+- 【新增】新增sceneActionTask
+
 #### 2021-08-05 Update
 - 【修复】修复场景topic发布bug
 

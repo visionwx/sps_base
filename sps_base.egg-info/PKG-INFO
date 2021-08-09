@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: sps-base
-Version: 1.1.1
+Version: 1.1.27
 Summary: SPS Core Base Library for Python
 Home-page: https://github.com/samdychen/sps_base
 Author: VisionWX
@@ -15,16 +15,77 @@ Description: ## SPS_BASE
         
         ## Usage
         ```
-        pip3 install git+https://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@github.com/samdychen/sps_base.git
+        pip3 install git+https://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@github.com/visionwx/sps_base.git
         ```
         
         ## Test
         ```
         export GCP_PROJECT=my-first-action-project-96da6
+        export GCP_LOCATION=us-central1
+        export SCENE_ACTION_TASK_QUEUE=scene-actions
+        export SCENE_ACTION_TASK_ENDPOINT=https://scene-kjhf45fuxq-uc.a.run.app/v1/execute-scene-action
+        export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96da6.iam.gserviceaccount.com"
         ```
         
         ## Change
+        #### 2021-08-09 Update
+        - 【新增】新增sceneActionTask
+        
+        #### 2021-08-05 Update
+        - 【修复】修复场景topic发布bug
+        
+        #### 2021-06-22 Update
+        - 【新增】新增 物联wall_outlet和sound_warner设备类型
+        
+        #### 2021-06-11 Update
+        - 【新增】新增 supportDeviceTemplatesDocument
+        
+        #### 2021-06-10 Update
+        - 【新增】新增 smart_locker大类和设备类型
+        - 【新增】新增 supportDevicesCollection和supportDeviceTemplatesCollection
+        
+        #### 2021-05-28 Update
+        - 【修复】pubsub.publisher.publishTuyaDeviceDeleteTopic 发布topic名称错误bug修复
+        
+        #### 2021-05-28 Update
+        - 【新增】ezviz摄像头设备数据模版 nightVisionMode迁移到liveVideo, liveVideo能力更新
+        
+        #### 2021-05-13 Update
+        - 【新增】ezviz摄像头设备数据模版 sdStorage.status改成列表 liveVideo增加分辨率支持
+        
+        #### 2021-04-29 Update
+        - 【新增】ezviz camera设备数据模版，状态初始化
+        
+        #### 2021-04-28 Update
+        - 【新增】ezviz camera设备数据模版，状态初始化
+        
+        #### 2021-04-27 Update
+        - 【新增】CAMERA_W2H Template
+        - 【新增】发布收到涂鸦/萤石设备消息的主题函数
+        - 【修复】修改ezviz_message_received 主题
+        
+        #### 2021-04-23 Update
+        - 【新增】DEVICE_TYPE toTypeId 增加新的摄像头id
+        
+        #### 2021-04-21 Update
+        - 【修复】DEVICE_TYPE.camera_c3x内容乱码问题解决
+        
+        #### 2021-04-17 Update
+        - 【新增】新增厂商接口异常 以及 设备验证码错误异常
+        - 【新增】增加物联网关数据模版
+        - 【优化】新增BaseException，所有exception 增加id字段
+        
+        #### 2021-04-16 Update
+        - 【新增】新增publishTuyaDeviceDeleteTopic
+        - 【新增】新增publishWulianDeviceDeleteTopic，以及部分exceptions
+        - 【优化】去掉DeviceDocument的 vendorPrefix参数
+        - 【新增】新增exception，Document基类set方法增加merge参数
+        - 【优化】优化DeviceTemplate类，增加fromType方法
+        
         #### 2021-04-15 Update
+        - 【增加】auth/authorization.py新增获取用户当前房子信息函数
+        - 【增加】新增auth/authorization.py
+        - 【增加】pubsub/publisher.py新增发布设备get指令topic
         - 【增加】新增萤石c3w/c3a/c3x/lc1c/bc1数据模版生成函数
         
         #### 2021-04-13 Update
