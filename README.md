@@ -7,11 +7,13 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/visionwx/sps_base.git
+pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.27
 ```
 
 ## Test
 ```
+google-cloud-tasks==2.0.0
+
 export GCP_PROJECT=my-first-action-project-96da6
 export GCP_LOCATION=us-central1
 export SCENE_ACTION_TASK_QUEUE=scene-actions
