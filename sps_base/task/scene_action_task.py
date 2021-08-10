@@ -145,7 +145,8 @@ class SceneActionTask(HttpTask):
         self.sceneId = sceneId
         self.sceneActionList = sceneActionList
         self.taskPayload = {
-            "sceneActionList": sceneActionList
+            "scene_action_list": sceneActionList,
+            "scene_id": sceneId,
         }
         if taskQueue is None:
             taskQueue = getParaFromEnvironment(
