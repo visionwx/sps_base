@@ -7,7 +7,7 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.27
+pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.30
 ```
 
 ## Test
