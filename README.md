@@ -22,6 +22,9 @@ export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96d
 ```
 
 ## Change
+#### 2021-08-10 Update
+- 【新增】新增MessageType消息通知类型
+
 #### 2021-08-09 Update
 - 【新增】新增sceneActionTask
 
