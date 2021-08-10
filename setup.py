@@ -13,7 +13,8 @@ URL = "https://github.com/samdychen/sps_base"
 VERSION = __import__(PACKAGE).__version__
 REQUIRES = [
     "google-cloud-firestore==1.8.1",
-    "google-cloud-pubsub"
+    "google-cloud-pubsub",
+    "google-cloud-tasks==2.0.0"
 ]
 
 LONG_DESCRIPTION = ''

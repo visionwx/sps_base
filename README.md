@@ -7,13 +7,11 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.30
+pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.31
 ```
 
 ## Test
 ```
-google-cloud-tasks==2.0.0
-
 export GCP_PROJECT=my-first-action-project-96da6
 export GCP_LOCATION=us-central1
 export SCENE_ACTION_TASK_QUEUE=scene-actions
@@ -24,6 +22,7 @@ export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96d
 ## Change
 #### 2021-08-10 Update
 - 【新增】新增MessageType消息通知类型
+- 【修复】解决tasks没有被包含到安装包的问题
 
 #### 2021-08-09 Update
 - 【新增】新增sceneActionTask
