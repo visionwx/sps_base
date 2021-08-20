@@ -63,6 +63,8 @@ class DEVICE_TYPE:
 	wall_outlet_1 = "devices.types.WALL_OUTLET_1"
 	wall_outlet_2 = "devices.types.WALL_OUTLET_2"
 	wall_outlet_3 = "devices.types.WALL_OUTLET_3"
+	# 智能红外网关
+	smart_ir = "devices.types.SMART_IR"
 
 	# mapping to iconTypeId
 	toTypeId = {
@@ -93,7 +95,8 @@ class DEVICE_TYPE:
 		door_locker: "18",
 		wall_outlet_1: "08",
 		wall_outlet_2: "08",
-		wall_outlet_3: "08"
+		wall_outlet_3: "08",
+		smart_ir: "19",
 	}
 
 # 设备厂商 代码
