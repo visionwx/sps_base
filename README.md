@@ -7,7 +7,7 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.32
+pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.33
 ```
 
 ## Test
@@ -20,6 +20,9 @@ export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96d
 ```
 
 ## Change
+#### 2021-08-20 Update
+- 【新增】新增涂鸦红外网关设备类型
+
 #### 2021-08-10 Update
 - 【新增】新增MessageType消息通知类型
 - 【修复】解决tasks没有被包含到安装包的问题
