@@ -7,7 +7,7 @@ SPS CORE Base lib
 
 ## Usage
 ```
-pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.33
+pip3 install git+https://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@github.com/visionwx/sps_base.git@v1.1.34
 ```
 
 ## Test
@@ -17,9 +17,23 @@ export GCP_LOCATION=us-central1
 export SCENE_ACTION_TASK_QUEUE=scene-actions
 export SCENE_ACTION_TASK_ENDPOINT=https://scene-kjhf45fuxq-uc.a.run.app/v1/execute-scene-action
 export SCENE_ACTION_TASK_SERVICE_ACCOUNT="cloud-task@my-first-action-project-96da6.iam.gserviceaccount.com"
+
+
+
+db.users.deleteOne({"_id" : ObjectId("611b5f59293d0f147dcc1e07")})
+
+db.users.insertOne({ "_id" : ObjectId("6071996c567c78f3642e5a1e"), "phone" : "13924100415", "metadata" : { "createTime" : 1618057580190.1458, "updateTime" : 1629167269147.4722 }, "isDelete" : false, "name" : "Jarod", "avatarUrl" : "https://oss.tf.visionwx.com/avatar/6071996c567c78f3642e5a1e.jpeg?version=1626426753444"})
+
+
+
+
+
 ```
 
 ## Change
+#### 2021-08-27 Update
+- 【优化】调整 scene-review主题的名称， topicData增加message_type字段
+
 #### 2021-08-20 Update
 - 【新增】新增涂鸦红外网关设备类型
 

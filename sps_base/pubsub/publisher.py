@@ -209,7 +209,8 @@ def publishSceneTopic(topicId, userId, houseId,
         "scene_id": sceneId,
         "scene_data": sceneData,
         "trigger": trigger,
-        "trigger_data": triggerData
+        "trigger_data": triggerData,
+        "message_type": "reviewScene", # 对接新版secene service的v1/messages需要
     }
     publishTopic(topicId, topicData)
 
