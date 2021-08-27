@@ -28,7 +28,7 @@ class SCENE_TOPIC:
 	DELETE = "scene-delete"
 	ENABLE = "scene-enable"
 	DISABLE = "scene-disable"
-	REVIEW  = "scene-review"
+	REVIEW  = "review-scene"
 	CHANGE  = "scene-change"
 
 # 房子相关主题
