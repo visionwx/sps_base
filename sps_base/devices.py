@@ -47,6 +47,7 @@ class DEVICE_TYPE:
 	sound_warner = "devices.types.SOUND_WARNER"
 	# 摄像头，对应萤石
 	camera_c3w = "devices.types.CAMERA_C3W"
+	camera_c3w_pro = "devices.types.CAMERA_C3W_PRO"
 	camera_c3a = "devices.types.CAMERA_C3A"
 	camera_lc1c = "devices.types.CAMERA_LC1C"
 	camera_bc1 = "devices.types.CAMERA_BC1"
@@ -83,6 +84,7 @@ class DEVICE_TYPE:
 		embedded_switch_2: "10",
 		garage_door_opener: "11",
 		camera_c3w: "12",
+		camera_c3w_pro: "12",
 		camera_c3a: "13",
 		camera_lc1c: "12",
 		camera_bc1: "12",

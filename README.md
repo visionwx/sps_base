@@ -31,6 +31,10 @@ db.users.insertOne({ "_id" : ObjectId("6071996c567c78f3642e5a1e"), "phone" : "13
 ```
 
 ## Change
+#### 2021-12-24 Update
+- 【新增】新增c3w_pro
+
+
 #### 2021-08-27 Update
 - 【优化】调整 scene-review主题的名称， topicData增加message_type字段
 
